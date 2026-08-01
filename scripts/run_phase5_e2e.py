@@ -343,27 +343,43 @@ class Driver:
         return value
 
     def _start(self, config: Path, scope: Path, target: str) -> str:
-        state = self.cli(
-            [
-                "run",
-                "--schema-version",
-                "4",
-                "--workflow",
-                "v4",
-                "--config",
-                str(config),
-                "--scope",
-                str(scope),
-                "--target",
-                target,
-            ],
-            expected={20},
+        # Recon and Mapper run before the first (read-only) approval gate and
+        # therefore before any fault injection; a failure here is always a
+        # spurious pre-branch provider error (e.g. a lightweight model emitting a
+        # non-schema Recon payload that exhausts schema repair), never an
+        # injected fault. Retry as a fresh run — exactly the workflow's own
+        # next_required_action=retry_as_new_run — so transient model flakiness
+        # does not abort an otherwise valid acceptance. Failed runs tear their
+        # own role containers down, so retries leave no residue.
+        attempts = int(os.environ.get("HERMES_E2E_START_ATTEMPTS", "4"))
+        last: dict[str, Any] = {}
+        for _attempt in range(attempts):
+            state = self.cli(
+                [
+                    "run",
+                    "--schema-version",
+                    "4",
+                    "--workflow",
+                    "v4",
+                    "--config",
+                    str(config),
+                    "--scope",
+                    str(scope),
+                    "--target",
+                    target,
+                ],
+                expected={20, 1},
+            )
+            if state.get("execution_state") == "awaiting_readonly_approval":
+                run_id = str(state["run_id"])
+                self.run_ids.append(run_id)
+                return run_id
+            last = state
+        raise E2EFailure(
+            "V4 run did not pause for read-only approval after "
+            f"{attempts} attempts; last execution_state="
+            f"{last.get('execution_state')} failure_code={last.get('failure_code')}"
         )
-        if state.get("execution_state") != "awaiting_readonly_approval":
-            raise E2EFailure("V4 run did not pause for read-only approval")
-        run_id = str(state["run_id"])
-        self.run_ids.append(run_id)
-        return run_id
 
     def _decision(
         self, config: Path, run_id: str, group: str, decision: str, key: Path

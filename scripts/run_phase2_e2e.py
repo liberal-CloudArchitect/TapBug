@@ -273,15 +273,38 @@ class Driver:
                 "-m",
                 "hermes",
                 "validate-config",
+                "--schema-version",
+                "2",
                 "--config",
                 str(config),
                 "--scope",
                 str(scope),
             ]
         )
-        self.command([sys.executable, "-m", "hermes", "doctor", "--config", str(config)])
+        self.command(
+            [
+                sys.executable,
+                "-m",
+                "hermes",
+                "doctor",
+                "--schema-version",
+                "2",
+                "--config",
+                str(config),
+            ]
+        )
         accepted = self.cli(
-            ["run", "--config", str(config), "--scope", str(scope), "--target", target],
+            [
+                "run",
+                "--schema-version",
+                "2",
+                "--config",
+                str(config),
+                "--scope",
+                str(scope),
+                "--target",
+                target,
+            ],
             expected={20},
         )
         accepted_id = str(accepted["run_id"])
@@ -343,7 +366,17 @@ class Driver:
         if accepted_stats != {"candidate": 2, "control": 1}:
             raise E2EFailure(f"unexpected accepted request counts: {accepted_stats}")
         rejected = self.cli(
-            ["run", "--config", str(config), "--scope", str(scope), "--target", target],
+            [
+                "run",
+                "--schema-version",
+                "2",
+                "--config",
+                str(config),
+                "--scope",
+                str(scope),
+                "--target",
+                target,
+            ],
             expected={20},
         )
         rejected_id = str(rejected["run_id"])
@@ -409,15 +442,38 @@ class Driver:
                 "-m",
                 "hermes",
                 "validate-config",
+                "--schema-version",
+                "2",
                 "--config",
                 str(config),
                 "--scope",
                 str(scope),
             ]
         )
-        self.command([sys.executable, "-m", "hermes", "doctor", "--config", str(config)])
+        self.command(
+            [
+                sys.executable,
+                "-m",
+                "hermes",
+                "doctor",
+                "--schema-version",
+                "2",
+                "--config",
+                str(config),
+            ]
+        )
         rejected = self.cli(
-            ["run", "--config", str(config), "--scope", str(scope), "--target", target],
+            [
+                "run",
+                "--schema-version",
+                "2",
+                "--config",
+                str(config),
+                "--scope",
+                str(scope),
+                "--target",
+                target,
+            ],
             expected={20},
         )
         rejected_id = str(rejected["run_id"])

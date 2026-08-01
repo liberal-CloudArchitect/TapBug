@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # Floor (3.11, the requires-python minimum and ruff/mypy target) through
+        # the version local development actually runs on (3.14), so the supported
+        # range is tested rather than drifting ahead of CI.
+        python-version: ["3.11", "3.12", "3.13", "3.14"]
+    env:
+      # Repository administrators must provide a reviewed image reference in the
+      # form registry.example/hermes-sandbox@sha256:<digest>. The integration test
+      # fails in CI if it is absent; it is never silently skipped.
+      HERMES_SANDBOX_IMAGE: ${{ vars.HERMES_SANDBOX_IMAGE }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -c requirements.lock '.[dev]' hatchling==1.31.0
+      - run: python -m ruff check src containers scripts tests
+      - run: python -m mypy src/hermes
+      - run: python -m pytest -m 'not integration'
+      - run: python -m pytest -m integration
+      - run: python -m pytest -m provider_e2e
+        if: ${{ vars.HERMES_REQUIRE_PHASE2_E2E == '1' }}
+        env:
+          HERMES_REQUIRE_PHASE2_E2E: "1"
+          HERMES_PHASE2_RUN_DIR: ${{ vars.HERMES_PHASE2_RUN_DIR }}
+          HERMES_PHASE2_CONFIG: ${{ vars.HERMES_PHASE2_CONFIG }}
+      - run: python -m pip wheel --no-build-isolation --no-deps --wheel-dir dist .
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hermes-build-${{ matrix.python-version }}
+          path: |
+            dist
+            runs
+          if-no-files-found: ignore

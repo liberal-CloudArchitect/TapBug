@@ -1,0 +1,3285 @@
+{
+  "version": "phase5-ground-truth-v2",
+  "cases": [
+    {
+      "id": "missing_x_content_type_options-pos-01",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "x_content_type_options": "absent",
+        "sample": "pos-01"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-pos-02",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "x_content_type_options": "absent",
+        "sample": "pos-02"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-pos-03",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "x_content_type_options": "absent",
+        "sample": "pos-03"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-pos-04",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "x_content_type_options": "absent",
+        "sample": "pos-04"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-pos-05",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "x_content_type_options": "absent",
+        "sample": "pos-05"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-pos-06",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "x_content_type_options": "absent",
+        "sample": "pos-06"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-pos-07",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "x_content_type_options": "absent",
+        "sample": "pos-07"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-pos-08",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "x_content_type_options": "absent",
+        "sample": "pos-08"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-pos-09",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "x_content_type_options": "absent",
+        "sample": "pos-09"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-pos-10",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "x_content_type_options": "absent",
+        "sample": "pos-10"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-pos-11",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "x_content_type_options": "absent",
+        "sample": "pos-11"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-pos-12",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "x_content_type_options": "absent",
+        "sample": "pos-12"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-pos-13",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "x_content_type_options": "absent",
+        "sample": "pos-13"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-pos-14",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "x_content_type_options": "absent",
+        "sample": "pos-14"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-pos-15",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "x_content_type_options": "absent",
+        "sample": "pos-15"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-pos-16",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "x_content_type_options": "absent",
+        "sample": "pos-16"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-pos-17",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "x_content_type_options": "absent",
+        "sample": "pos-17"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-pos-18",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "x_content_type_options": "absent",
+        "sample": "pos-18"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-pos-19",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "x_content_type_options": "absent",
+        "sample": "pos-19"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-pos-20",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "x_content_type_options": "absent",
+        "sample": "pos-20"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-neg-01",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "x_content_type_options": "nosniff",
+        "sample": "neg-01"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-neg-02",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "x_content_type_options": "nosniff",
+        "sample": "neg-02"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-neg-03",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "x_content_type_options": "nosniff",
+        "sample": "neg-03"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-neg-04",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "x_content_type_options": "nosniff",
+        "sample": "neg-04"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-neg-05",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "x_content_type_options": "nosniff",
+        "sample": "neg-05"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-neg-06",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "x_content_type_options": "nosniff",
+        "sample": "neg-06"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-neg-07",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "x_content_type_options": "nosniff",
+        "sample": "neg-07"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-neg-08",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "x_content_type_options": "nosniff",
+        "sample": "neg-08"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-neg-09",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "x_content_type_options": "nosniff",
+        "sample": "neg-09"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-neg-10",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "x_content_type_options": "nosniff",
+        "sample": "neg-10"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-neg-11",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "x_content_type_options": "nosniff",
+        "sample": "neg-11"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-neg-12",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "x_content_type_options": "nosniff",
+        "sample": "neg-12"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-neg-13",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "x_content_type_options": "nosniff",
+        "sample": "neg-13"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-neg-14",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "x_content_type_options": "nosniff",
+        "sample": "neg-14"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-neg-15",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "x_content_type_options": "nosniff",
+        "sample": "neg-15"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-neg-16",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "x_content_type_options": "nosniff",
+        "sample": "neg-16"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-neg-17",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "x_content_type_options": "nosniff",
+        "sample": "neg-17"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-neg-18",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "x_content_type_options": "nosniff",
+        "sample": "neg-18"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-neg-19",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "x_content_type_options": "nosniff",
+        "sample": "neg-19"
+      }
+    },
+    {
+      "id": "missing_x_content_type_options-neg-20",
+      "candidate_type": "missing_x_content_type_options",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "x_content_type_options": "nosniff",
+        "sample": "neg-20"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-pos-01",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "secure": false,
+        "http_only": true,
+        "sample": "pos-01"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-pos-02",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "secure": false,
+        "http_only": true,
+        "sample": "pos-02"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-pos-03",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "secure": false,
+        "http_only": true,
+        "sample": "pos-03"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-pos-04",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "secure": false,
+        "http_only": true,
+        "sample": "pos-04"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-pos-05",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "secure": false,
+        "http_only": true,
+        "sample": "pos-05"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-pos-06",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "secure": false,
+        "http_only": true,
+        "sample": "pos-06"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-pos-07",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "secure": false,
+        "http_only": true,
+        "sample": "pos-07"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-pos-08",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "secure": false,
+        "http_only": true,
+        "sample": "pos-08"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-pos-09",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "secure": false,
+        "http_only": true,
+        "sample": "pos-09"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-pos-10",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "secure": false,
+        "http_only": true,
+        "sample": "pos-10"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-pos-11",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "secure": false,
+        "http_only": true,
+        "sample": "pos-11"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-pos-12",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "secure": false,
+        "http_only": true,
+        "sample": "pos-12"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-pos-13",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "secure": false,
+        "http_only": true,
+        "sample": "pos-13"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-pos-14",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "secure": false,
+        "http_only": true,
+        "sample": "pos-14"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-pos-15",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "secure": false,
+        "http_only": true,
+        "sample": "pos-15"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-pos-16",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "secure": false,
+        "http_only": true,
+        "sample": "pos-16"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-pos-17",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "secure": false,
+        "http_only": true,
+        "sample": "pos-17"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-pos-18",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "secure": false,
+        "http_only": true,
+        "sample": "pos-18"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-pos-19",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "secure": false,
+        "http_only": true,
+        "sample": "pos-19"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-pos-20",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "secure": false,
+        "http_only": true,
+        "sample": "pos-20"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-neg-01",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "secure": true,
+        "http_only": true,
+        "sample": "neg-01"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-neg-02",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "secure": true,
+        "http_only": true,
+        "sample": "neg-02"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-neg-03",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "secure": true,
+        "http_only": true,
+        "sample": "neg-03"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-neg-04",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "secure": true,
+        "http_only": true,
+        "sample": "neg-04"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-neg-05",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "secure": true,
+        "http_only": true,
+        "sample": "neg-05"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-neg-06",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "secure": true,
+        "http_only": true,
+        "sample": "neg-06"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-neg-07",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "secure": true,
+        "http_only": true,
+        "sample": "neg-07"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-neg-08",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "secure": true,
+        "http_only": true,
+        "sample": "neg-08"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-neg-09",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "secure": true,
+        "http_only": true,
+        "sample": "neg-09"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-neg-10",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "secure": true,
+        "http_only": true,
+        "sample": "neg-10"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-neg-11",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "secure": true,
+        "http_only": true,
+        "sample": "neg-11"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-neg-12",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "secure": true,
+        "http_only": true,
+        "sample": "neg-12"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-neg-13",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "secure": true,
+        "http_only": true,
+        "sample": "neg-13"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-neg-14",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "secure": true,
+        "http_only": true,
+        "sample": "neg-14"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-neg-15",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "secure": true,
+        "http_only": true,
+        "sample": "neg-15"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-neg-16",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "secure": true,
+        "http_only": true,
+        "sample": "neg-16"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-neg-17",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "secure": true,
+        "http_only": true,
+        "sample": "neg-17"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-neg-18",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "secure": true,
+        "http_only": true,
+        "sample": "neg-18"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-neg-19",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "secure": true,
+        "http_only": true,
+        "sample": "neg-19"
+      }
+    },
+    {
+      "id": "insecure_session_cookie-neg-20",
+      "candidate_type": "insecure_session_cookie",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "secure": true,
+        "http_only": true,
+        "sample": "neg-20"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-pos-01",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "location": "https://redirect.invalid/landing",
+        "sample": "pos-01"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-pos-02",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "location": "https://redirect.invalid/landing",
+        "sample": "pos-02"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-pos-03",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "location": "https://redirect.invalid/landing",
+        "sample": "pos-03"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-pos-04",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "location": "https://redirect.invalid/landing",
+        "sample": "pos-04"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-pos-05",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "location": "https://redirect.invalid/landing",
+        "sample": "pos-05"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-pos-06",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "location": "https://redirect.invalid/landing",
+        "sample": "pos-06"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-pos-07",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "location": "https://redirect.invalid/landing",
+        "sample": "pos-07"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-pos-08",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "location": "https://redirect.invalid/landing",
+        "sample": "pos-08"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-pos-09",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "location": "https://redirect.invalid/landing",
+        "sample": "pos-09"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-pos-10",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "location": "https://redirect.invalid/landing",
+        "sample": "pos-10"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-pos-11",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "location": "https://redirect.invalid/landing",
+        "sample": "pos-11"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-pos-12",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "location": "https://redirect.invalid/landing",
+        "sample": "pos-12"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-pos-13",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "location": "https://redirect.invalid/landing",
+        "sample": "pos-13"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-pos-14",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "location": "https://redirect.invalid/landing",
+        "sample": "pos-14"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-pos-15",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "location": "https://redirect.invalid/landing",
+        "sample": "pos-15"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-pos-16",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "location": "https://redirect.invalid/landing",
+        "sample": "pos-16"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-pos-17",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "location": "https://redirect.invalid/landing",
+        "sample": "pos-17"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-pos-18",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "location": "https://redirect.invalid/landing",
+        "sample": "pos-18"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-pos-19",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "location": "https://redirect.invalid/landing",
+        "sample": "pos-19"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-pos-20",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "verified",
+      "observation": {
+        "location": "https://redirect.invalid/landing",
+        "sample": "pos-20"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-neg-01",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "location": "/local/landing",
+        "sample": "neg-01"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-neg-02",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "location": "/local/landing",
+        "sample": "neg-02"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-neg-03",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "location": "/local/landing",
+        "sample": "neg-03"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-neg-04",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "location": "/local/landing",
+        "sample": "neg-04"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-neg-05",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "location": "/local/landing",
+        "sample": "neg-05"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-neg-06",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "location": "/local/landing",
+        "sample": "neg-06"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-neg-07",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "location": "/local/landing",
+        "sample": "neg-07"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-neg-08",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "location": "/local/landing",
+        "sample": "neg-08"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-neg-09",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "location": "/local/landing",
+        "sample": "neg-09"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-neg-10",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "location": "/local/landing",
+        "sample": "neg-10"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-neg-11",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "location": "/local/landing",
+        "sample": "neg-11"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-neg-12",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "location": "/local/landing",
+        "sample": "neg-12"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-neg-13",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "location": "/local/landing",
+        "sample": "neg-13"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-neg-14",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "location": "/local/landing",
+        "sample": "neg-14"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-neg-15",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "location": "/local/landing",
+        "sample": "neg-15"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-neg-16",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "location": "/local/landing",
+        "sample": "neg-16"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-neg-17",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "location": "/local/landing",
+        "sample": "neg-17"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-neg-18",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "location": "/local/landing",
+        "sample": "neg-18"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-neg-19",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "location": "/local/landing",
+        "sample": "neg-19"
+      }
+    },
+    {
+      "id": "unvalidated_redirect-neg-20",
+      "candidate_type": "unvalidated_redirect",
+      "family": "web",
+      "expected": "none",
+      "observation": {
+        "location": "/local/landing",
+        "sample": "neg-20"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-pos-01",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "verified",
+      "observation": {
+        "status_code": 200,
+        "requires_admin": false,
+        "sample": "pos-01"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-pos-02",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "verified",
+      "observation": {
+        "status_code": 200,
+        "requires_admin": false,
+        "sample": "pos-02"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-pos-03",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "verified",
+      "observation": {
+        "status_code": 200,
+        "requires_admin": false,
+        "sample": "pos-03"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-pos-04",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "verified",
+      "observation": {
+        "status_code": 200,
+        "requires_admin": false,
+        "sample": "pos-04"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-pos-05",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "verified",
+      "observation": {
+        "status_code": 200,
+        "requires_admin": false,
+        "sample": "pos-05"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-pos-06",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "verified",
+      "observation": {
+        "status_code": 200,
+        "requires_admin": false,
+        "sample": "pos-06"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-pos-07",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "verified",
+      "observation": {
+        "status_code": 200,
+        "requires_admin": false,
+        "sample": "pos-07"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-pos-08",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "verified",
+      "observation": {
+        "status_code": 200,
+        "requires_admin": false,
+        "sample": "pos-08"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-pos-09",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "verified",
+      "observation": {
+        "status_code": 200,
+        "requires_admin": false,
+        "sample": "pos-09"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-pos-10",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "verified",
+      "observation": {
+        "status_code": 200,
+        "requires_admin": false,
+        "sample": "pos-10"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-pos-11",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "verified",
+      "observation": {
+        "status_code": 200,
+        "requires_admin": false,
+        "sample": "pos-11"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-pos-12",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "verified",
+      "observation": {
+        "status_code": 200,
+        "requires_admin": false,
+        "sample": "pos-12"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-pos-13",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "verified",
+      "observation": {
+        "status_code": 200,
+        "requires_admin": false,
+        "sample": "pos-13"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-pos-14",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "verified",
+      "observation": {
+        "status_code": 200,
+        "requires_admin": false,
+        "sample": "pos-14"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-pos-15",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "verified",
+      "observation": {
+        "status_code": 200,
+        "requires_admin": false,
+        "sample": "pos-15"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-pos-16",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "verified",
+      "observation": {
+        "status_code": 200,
+        "requires_admin": false,
+        "sample": "pos-16"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-pos-17",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "verified",
+      "observation": {
+        "status_code": 200,
+        "requires_admin": false,
+        "sample": "pos-17"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-pos-18",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "verified",
+      "observation": {
+        "status_code": 200,
+        "requires_admin": false,
+        "sample": "pos-18"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-pos-19",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "verified",
+      "observation": {
+        "status_code": 200,
+        "requires_admin": false,
+        "sample": "pos-19"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-pos-20",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "verified",
+      "observation": {
+        "status_code": 200,
+        "requires_admin": false,
+        "sample": "pos-20"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-neg-01",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "none",
+      "observation": {
+        "status_code": 404,
+        "requires_admin": false,
+        "sample": "neg-01"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-neg-02",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "none",
+      "observation": {
+        "status_code": 404,
+        "requires_admin": false,
+        "sample": "neg-02"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-neg-03",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "none",
+      "observation": {
+        "status_code": 404,
+        "requires_admin": false,
+        "sample": "neg-03"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-neg-04",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "none",
+      "observation": {
+        "status_code": 404,
+        "requires_admin": false,
+        "sample": "neg-04"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-neg-05",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "none",
+      "observation": {
+        "status_code": 404,
+        "requires_admin": false,
+        "sample": "neg-05"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-neg-06",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "none",
+      "observation": {
+        "status_code": 404,
+        "requires_admin": false,
+        "sample": "neg-06"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-neg-07",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "none",
+      "observation": {
+        "status_code": 404,
+        "requires_admin": false,
+        "sample": "neg-07"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-neg-08",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "none",
+      "observation": {
+        "status_code": 404,
+        "requires_admin": false,
+        "sample": "neg-08"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-neg-09",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "none",
+      "observation": {
+        "status_code": 404,
+        "requires_admin": false,
+        "sample": "neg-09"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-neg-10",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "none",
+      "observation": {
+        "status_code": 404,
+        "requires_admin": false,
+        "sample": "neg-10"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-neg-11",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "none",
+      "observation": {
+        "status_code": 404,
+        "requires_admin": false,
+        "sample": "neg-11"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-neg-12",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "none",
+      "observation": {
+        "status_code": 404,
+        "requires_admin": false,
+        "sample": "neg-12"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-neg-13",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "none",
+      "observation": {
+        "status_code": 404,
+        "requires_admin": false,
+        "sample": "neg-13"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-neg-14",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "none",
+      "observation": {
+        "status_code": 404,
+        "requires_admin": false,
+        "sample": "neg-14"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-neg-15",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "none",
+      "observation": {
+        "status_code": 404,
+        "requires_admin": false,
+        "sample": "neg-15"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-neg-16",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "none",
+      "observation": {
+        "status_code": 404,
+        "requires_admin": false,
+        "sample": "neg-16"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-neg-17",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "none",
+      "observation": {
+        "status_code": 404,
+        "requires_admin": false,
+        "sample": "neg-17"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-neg-18",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "none",
+      "observation": {
+        "status_code": 404,
+        "requires_admin": false,
+        "sample": "neg-18"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-neg-19",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "none",
+      "observation": {
+        "status_code": 404,
+        "requires_admin": false,
+        "sample": "neg-19"
+      }
+    },
+    {
+      "id": "exposed_debug_endpoint-neg-20",
+      "candidate_type": "exposed_debug_endpoint",
+      "family": "infra",
+      "expected": "none",
+      "observation": {
+        "status_code": 404,
+        "requires_admin": false,
+        "sample": "neg-20"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-pos-01",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "verified",
+      "observation": {
+        "low_privilege_mutation": "accepted",
+        "sample": "pos-01"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-pos-02",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "verified",
+      "observation": {
+        "low_privilege_mutation": "accepted",
+        "sample": "pos-02"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-pos-03",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "verified",
+      "observation": {
+        "low_privilege_mutation": "accepted",
+        "sample": "pos-03"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-pos-04",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "verified",
+      "observation": {
+        "low_privilege_mutation": "accepted",
+        "sample": "pos-04"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-pos-05",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "verified",
+      "observation": {
+        "low_privilege_mutation": "accepted",
+        "sample": "pos-05"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-pos-06",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "verified",
+      "observation": {
+        "low_privilege_mutation": "accepted",
+        "sample": "pos-06"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-pos-07",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "verified",
+      "observation": {
+        "low_privilege_mutation": "accepted",
+        "sample": "pos-07"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-pos-08",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "verified",
+      "observation": {
+        "low_privilege_mutation": "accepted",
+        "sample": "pos-08"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-pos-09",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "verified",
+      "observation": {
+        "low_privilege_mutation": "accepted",
+        "sample": "pos-09"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-pos-10",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "verified",
+      "observation": {
+        "low_privilege_mutation": "accepted",
+        "sample": "pos-10"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-pos-11",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "verified",
+      "observation": {
+        "low_privilege_mutation": "accepted",
+        "sample": "pos-11"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-pos-12",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "verified",
+      "observation": {
+        "low_privilege_mutation": "accepted",
+        "sample": "pos-12"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-pos-13",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "verified",
+      "observation": {
+        "low_privilege_mutation": "accepted",
+        "sample": "pos-13"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-pos-14",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "verified",
+      "observation": {
+        "low_privilege_mutation": "accepted",
+        "sample": "pos-14"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-pos-15",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "verified",
+      "observation": {
+        "low_privilege_mutation": "accepted",
+        "sample": "pos-15"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-pos-16",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "verified",
+      "observation": {
+        "low_privilege_mutation": "accepted",
+        "sample": "pos-16"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-pos-17",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "verified",
+      "observation": {
+        "low_privilege_mutation": "accepted",
+        "sample": "pos-17"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-pos-18",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "verified",
+      "observation": {
+        "low_privilege_mutation": "accepted",
+        "sample": "pos-18"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-pos-19",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "verified",
+      "observation": {
+        "low_privilege_mutation": "accepted",
+        "sample": "pos-19"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-pos-20",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "verified",
+      "observation": {
+        "low_privilege_mutation": "accepted",
+        "sample": "pos-20"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-neg-01",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "none",
+      "observation": {
+        "low_privilege_mutation": "denied",
+        "sample": "neg-01"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-neg-02",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "none",
+      "observation": {
+        "low_privilege_mutation": "denied",
+        "sample": "neg-02"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-neg-03",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "none",
+      "observation": {
+        "low_privilege_mutation": "denied",
+        "sample": "neg-03"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-neg-04",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "none",
+      "observation": {
+        "low_privilege_mutation": "denied",
+        "sample": "neg-04"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-neg-05",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "none",
+      "observation": {
+        "low_privilege_mutation": "denied",
+        "sample": "neg-05"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-neg-06",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "none",
+      "observation": {
+        "low_privilege_mutation": "denied",
+        "sample": "neg-06"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-neg-07",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "none",
+      "observation": {
+        "low_privilege_mutation": "denied",
+        "sample": "neg-07"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-neg-08",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "none",
+      "observation": {
+        "low_privilege_mutation": "denied",
+        "sample": "neg-08"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-neg-09",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "none",
+      "observation": {
+        "low_privilege_mutation": "denied",
+        "sample": "neg-09"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-neg-10",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "none",
+      "observation": {
+        "low_privilege_mutation": "denied",
+        "sample": "neg-10"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-neg-11",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "none",
+      "observation": {
+        "low_privilege_mutation": "denied",
+        "sample": "neg-11"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-neg-12",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "none",
+      "observation": {
+        "low_privilege_mutation": "denied",
+        "sample": "neg-12"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-neg-13",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "none",
+      "observation": {
+        "low_privilege_mutation": "denied",
+        "sample": "neg-13"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-neg-14",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "none",
+      "observation": {
+        "low_privilege_mutation": "denied",
+        "sample": "neg-14"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-neg-15",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "none",
+      "observation": {
+        "low_privilege_mutation": "denied",
+        "sample": "neg-15"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-neg-16",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "none",
+      "observation": {
+        "low_privilege_mutation": "denied",
+        "sample": "neg-16"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-neg-17",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "none",
+      "observation": {
+        "low_privilege_mutation": "denied",
+        "sample": "neg-17"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-neg-18",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "none",
+      "observation": {
+        "low_privilege_mutation": "denied",
+        "sample": "neg-18"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-neg-19",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "none",
+      "observation": {
+        "low_privilege_mutation": "denied",
+        "sample": "neg-19"
+      }
+    },
+    {
+      "id": "unauthorized_graphql_mutation-neg-20",
+      "candidate_type": "unauthorized_graphql_mutation",
+      "family": "api",
+      "expected": "none",
+      "observation": {
+        "low_privilege_mutation": "denied",
+        "sample": "neg-20"
+      }
+    },
+    {
+      "id": "privilege_escalation-pos-01",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "self_role_change": "accepted",
+        "sample": "pos-01"
+      }
+    },
+    {
+      "id": "privilege_escalation-pos-02",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "self_role_change": "accepted",
+        "sample": "pos-02"
+      }
+    },
+    {
+      "id": "privilege_escalation-pos-03",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "self_role_change": "accepted",
+        "sample": "pos-03"
+      }
+    },
+    {
+      "id": "privilege_escalation-pos-04",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "self_role_change": "accepted",
+        "sample": "pos-04"
+      }
+    },
+    {
+      "id": "privilege_escalation-pos-05",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "self_role_change": "accepted",
+        "sample": "pos-05"
+      }
+    },
+    {
+      "id": "privilege_escalation-pos-06",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "self_role_change": "accepted",
+        "sample": "pos-06"
+      }
+    },
+    {
+      "id": "privilege_escalation-pos-07",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "self_role_change": "accepted",
+        "sample": "pos-07"
+      }
+    },
+    {
+      "id": "privilege_escalation-pos-08",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "self_role_change": "accepted",
+        "sample": "pos-08"
+      }
+    },
+    {
+      "id": "privilege_escalation-pos-09",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "self_role_change": "accepted",
+        "sample": "pos-09"
+      }
+    },
+    {
+      "id": "privilege_escalation-pos-10",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "self_role_change": "accepted",
+        "sample": "pos-10"
+      }
+    },
+    {
+      "id": "privilege_escalation-pos-11",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "self_role_change": "accepted",
+        "sample": "pos-11"
+      }
+    },
+    {
+      "id": "privilege_escalation-pos-12",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "self_role_change": "accepted",
+        "sample": "pos-12"
+      }
+    },
+    {
+      "id": "privilege_escalation-pos-13",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "self_role_change": "accepted",
+        "sample": "pos-13"
+      }
+    },
+    {
+      "id": "privilege_escalation-pos-14",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "self_role_change": "accepted",
+        "sample": "pos-14"
+      }
+    },
+    {
+      "id": "privilege_escalation-pos-15",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "self_role_change": "accepted",
+        "sample": "pos-15"
+      }
+    },
+    {
+      "id": "privilege_escalation-pos-16",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "self_role_change": "accepted",
+        "sample": "pos-16"
+      }
+    },
+    {
+      "id": "privilege_escalation-pos-17",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "self_role_change": "accepted",
+        "sample": "pos-17"
+      }
+    },
+    {
+      "id": "privilege_escalation-pos-18",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "self_role_change": "accepted",
+        "sample": "pos-18"
+      }
+    },
+    {
+      "id": "privilege_escalation-pos-19",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "self_role_change": "accepted",
+        "sample": "pos-19"
+      }
+    },
+    {
+      "id": "privilege_escalation-pos-20",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "self_role_change": "accepted",
+        "sample": "pos-20"
+      }
+    },
+    {
+      "id": "privilege_escalation-neg-01",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "self_role_change": "denied",
+        "sample": "neg-01"
+      }
+    },
+    {
+      "id": "privilege_escalation-neg-02",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "self_role_change": "denied",
+        "sample": "neg-02"
+      }
+    },
+    {
+      "id": "privilege_escalation-neg-03",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "self_role_change": "denied",
+        "sample": "neg-03"
+      }
+    },
+    {
+      "id": "privilege_escalation-neg-04",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "self_role_change": "denied",
+        "sample": "neg-04"
+      }
+    },
+    {
+      "id": "privilege_escalation-neg-05",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "self_role_change": "denied",
+        "sample": "neg-05"
+      }
+    },
+    {
+      "id": "privilege_escalation-neg-06",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "self_role_change": "denied",
+        "sample": "neg-06"
+      }
+    },
+    {
+      "id": "privilege_escalation-neg-07",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "self_role_change": "denied",
+        "sample": "neg-07"
+      }
+    },
+    {
+      "id": "privilege_escalation-neg-08",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "self_role_change": "denied",
+        "sample": "neg-08"
+      }
+    },
+    {
+      "id": "privilege_escalation-neg-09",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "self_role_change": "denied",
+        "sample": "neg-09"
+      }
+    },
+    {
+      "id": "privilege_escalation-neg-10",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "self_role_change": "denied",
+        "sample": "neg-10"
+      }
+    },
+    {
+      "id": "privilege_escalation-neg-11",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "self_role_change": "denied",
+        "sample": "neg-11"
+      }
+    },
+    {
+      "id": "privilege_escalation-neg-12",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "self_role_change": "denied",
+        "sample": "neg-12"
+      }
+    },
+    {
+      "id": "privilege_escalation-neg-13",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "self_role_change": "denied",
+        "sample": "neg-13"
+      }
+    },
+    {
+      "id": "privilege_escalation-neg-14",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "self_role_change": "denied",
+        "sample": "neg-14"
+      }
+    },
+    {
+      "id": "privilege_escalation-neg-15",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "self_role_change": "denied",
+        "sample": "neg-15"
+      }
+    },
+    {
+      "id": "privilege_escalation-neg-16",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "self_role_change": "denied",
+        "sample": "neg-16"
+      }
+    },
+    {
+      "id": "privilege_escalation-neg-17",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "self_role_change": "denied",
+        "sample": "neg-17"
+      }
+    },
+    {
+      "id": "privilege_escalation-neg-18",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "self_role_change": "denied",
+        "sample": "neg-18"
+      }
+    },
+    {
+      "id": "privilege_escalation-neg-19",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "self_role_change": "denied",
+        "sample": "neg-19"
+      }
+    },
+    {
+      "id": "privilege_escalation-neg-20",
+      "candidate_type": "privilege_escalation",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "self_role_change": "denied",
+        "sample": "neg-20"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-pos-01",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "cross_tenant_read": "returned",
+        "sample": "pos-01"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-pos-02",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "cross_tenant_read": "returned",
+        "sample": "pos-02"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-pos-03",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "cross_tenant_read": "returned",
+        "sample": "pos-03"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-pos-04",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "cross_tenant_read": "returned",
+        "sample": "pos-04"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-pos-05",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "cross_tenant_read": "returned",
+        "sample": "pos-05"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-pos-06",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "cross_tenant_read": "returned",
+        "sample": "pos-06"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-pos-07",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "cross_tenant_read": "returned",
+        "sample": "pos-07"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-pos-08",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "cross_tenant_read": "returned",
+        "sample": "pos-08"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-pos-09",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "cross_tenant_read": "returned",
+        "sample": "pos-09"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-pos-10",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "cross_tenant_read": "returned",
+        "sample": "pos-10"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-pos-11",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "cross_tenant_read": "returned",
+        "sample": "pos-11"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-pos-12",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "cross_tenant_read": "returned",
+        "sample": "pos-12"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-pos-13",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "cross_tenant_read": "returned",
+        "sample": "pos-13"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-pos-14",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "cross_tenant_read": "returned",
+        "sample": "pos-14"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-pos-15",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "cross_tenant_read": "returned",
+        "sample": "pos-15"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-pos-16",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "cross_tenant_read": "returned",
+        "sample": "pos-16"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-pos-17",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "cross_tenant_read": "returned",
+        "sample": "pos-17"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-pos-18",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "cross_tenant_read": "returned",
+        "sample": "pos-18"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-pos-19",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "cross_tenant_read": "returned",
+        "sample": "pos-19"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-pos-20",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "verified",
+      "observation": {
+        "cross_tenant_read": "returned",
+        "sample": "pos-20"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-neg-01",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "cross_tenant_read": "denied",
+        "sample": "neg-01"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-neg-02",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "cross_tenant_read": "denied",
+        "sample": "neg-02"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-neg-03",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "cross_tenant_read": "denied",
+        "sample": "neg-03"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-neg-04",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "cross_tenant_read": "denied",
+        "sample": "neg-04"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-neg-05",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "cross_tenant_read": "denied",
+        "sample": "neg-05"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-neg-06",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "cross_tenant_read": "denied",
+        "sample": "neg-06"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-neg-07",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "cross_tenant_read": "denied",
+        "sample": "neg-07"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-neg-08",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "cross_tenant_read": "denied",
+        "sample": "neg-08"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-neg-09",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "cross_tenant_read": "denied",
+        "sample": "neg-09"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-neg-10",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "cross_tenant_read": "denied",
+        "sample": "neg-10"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-neg-11",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "cross_tenant_read": "denied",
+        "sample": "neg-11"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-neg-12",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "cross_tenant_read": "denied",
+        "sample": "neg-12"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-neg-13",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "cross_tenant_read": "denied",
+        "sample": "neg-13"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-neg-14",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "cross_tenant_read": "denied",
+        "sample": "neg-14"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-neg-15",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "cross_tenant_read": "denied",
+        "sample": "neg-15"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-neg-16",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "cross_tenant_read": "denied",
+        "sample": "neg-16"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-neg-17",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "cross_tenant_read": "denied",
+        "sample": "neg-17"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-neg-18",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "cross_tenant_read": "denied",
+        "sample": "neg-18"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-neg-19",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "cross_tenant_read": "denied",
+        "sample": "neg-19"
+      }
+    },
+    {
+      "id": "cross_tenant_object_read-neg-20",
+      "candidate_type": "cross_tenant_object_read",
+      "family": "authz",
+      "expected": "none",
+      "observation": {
+        "cross_tenant_read": "denied",
+        "sample": "neg-20"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-pos-01",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "verified",
+      "observation": {
+        "draft_to_approved": "accepted",
+        "sample": "pos-01"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-pos-02",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "verified",
+      "observation": {
+        "draft_to_approved": "accepted",
+        "sample": "pos-02"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-pos-03",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "verified",
+      "observation": {
+        "draft_to_approved": "accepted",
+        "sample": "pos-03"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-pos-04",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "verified",
+      "observation": {
+        "draft_to_approved": "accepted",
+        "sample": "pos-04"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-pos-05",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "verified",
+      "observation": {
+        "draft_to_approved": "accepted",
+        "sample": "pos-05"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-pos-06",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "verified",
+      "observation": {
+        "draft_to_approved": "accepted",
+        "sample": "pos-06"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-pos-07",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "verified",
+      "observation": {
+        "draft_to_approved": "accepted",
+        "sample": "pos-07"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-pos-08",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "verified",
+      "observation": {
+        "draft_to_approved": "accepted",
+        "sample": "pos-08"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-pos-09",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "verified",
+      "observation": {
+        "draft_to_approved": "accepted",
+        "sample": "pos-09"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-pos-10",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "verified",
+      "observation": {
+        "draft_to_approved": "accepted",
+        "sample": "pos-10"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-pos-11",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "verified",
+      "observation": {
+        "draft_to_approved": "accepted",
+        "sample": "pos-11"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-pos-12",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "verified",
+      "observation": {
+        "draft_to_approved": "accepted",
+        "sample": "pos-12"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-pos-13",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "verified",
+      "observation": {
+        "draft_to_approved": "accepted",
+        "sample": "pos-13"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-pos-14",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "verified",
+      "observation": {
+        "draft_to_approved": "accepted",
+        "sample": "pos-14"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-pos-15",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "verified",
+      "observation": {
+        "draft_to_approved": "accepted",
+        "sample": "pos-15"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-pos-16",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "verified",
+      "observation": {
+        "draft_to_approved": "accepted",
+        "sample": "pos-16"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-pos-17",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "verified",
+      "observation": {
+        "draft_to_approved": "accepted",
+        "sample": "pos-17"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-pos-18",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "verified",
+      "observation": {
+        "draft_to_approved": "accepted",
+        "sample": "pos-18"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-pos-19",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "verified",
+      "observation": {
+        "draft_to_approved": "accepted",
+        "sample": "pos-19"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-pos-20",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "verified",
+      "observation": {
+        "draft_to_approved": "accepted",
+        "sample": "pos-20"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-neg-01",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "none",
+      "observation": {
+        "draft_to_approved": "denied",
+        "sample": "neg-01"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-neg-02",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "none",
+      "observation": {
+        "draft_to_approved": "denied",
+        "sample": "neg-02"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-neg-03",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "none",
+      "observation": {
+        "draft_to_approved": "denied",
+        "sample": "neg-03"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-neg-04",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "none",
+      "observation": {
+        "draft_to_approved": "denied",
+        "sample": "neg-04"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-neg-05",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "none",
+      "observation": {
+        "draft_to_approved": "denied",
+        "sample": "neg-05"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-neg-06",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "none",
+      "observation": {
+        "draft_to_approved": "denied",
+        "sample": "neg-06"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-neg-07",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "none",
+      "observation": {
+        "draft_to_approved": "denied",
+        "sample": "neg-07"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-neg-08",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "none",
+      "observation": {
+        "draft_to_approved": "denied",
+        "sample": "neg-08"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-neg-09",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "none",
+      "observation": {
+        "draft_to_approved": "denied",
+        "sample": "neg-09"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-neg-10",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "none",
+      "observation": {
+        "draft_to_approved": "denied",
+        "sample": "neg-10"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-neg-11",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "none",
+      "observation": {
+        "draft_to_approved": "denied",
+        "sample": "neg-11"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-neg-12",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "none",
+      "observation": {
+        "draft_to_approved": "denied",
+        "sample": "neg-12"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-neg-13",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "none",
+      "observation": {
+        "draft_to_approved": "denied",
+        "sample": "neg-13"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-neg-14",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "none",
+      "observation": {
+        "draft_to_approved": "denied",
+        "sample": "neg-14"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-neg-15",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "none",
+      "observation": {
+        "draft_to_approved": "denied",
+        "sample": "neg-15"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-neg-16",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "none",
+      "observation": {
+        "draft_to_approved": "denied",
+        "sample": "neg-16"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-neg-17",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "none",
+      "observation": {
+        "draft_to_approved": "denied",
+        "sample": "neg-17"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-neg-18",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "none",
+      "observation": {
+        "draft_to_approved": "denied",
+        "sample": "neg-18"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-neg-19",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "none",
+      "observation": {
+        "draft_to_approved": "denied",
+        "sample": "neg-19"
+      }
+    },
+    {
+      "id": "workflow_transition_bypass-neg-20",
+      "candidate_type": "workflow_transition_bypass",
+      "family": "workflow",
+      "expected": "none",
+      "observation": {
+        "draft_to_approved": "denied",
+        "sample": "neg-20"
+      }
+    }
+  ]
+}

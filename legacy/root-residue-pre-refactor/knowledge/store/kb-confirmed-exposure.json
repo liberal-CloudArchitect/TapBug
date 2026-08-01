@@ -1,0 +1,22 @@
+{
+  "id": "kb-confirmed-exposure",
+  "kind": "path",
+  "tags": [
+    "infra",
+    "exposure",
+    "learned"
+  ],
+  "paths": [
+    "/.env",
+    "/.env.bak",
+    "/.git/config",
+    "/.htpasswd",
+    "/admin",
+    "/backup.zip",
+    "/phpinfo.php",
+    "/wp-config.php.bak"
+  ],
+  "vuln_class": "Sensitive Data Exposure",
+  "note": "各轮确认暴露的敏感路径累积（自动回写，复利）。",
+  "created": "2026-07-08T07:08:23Z"
+}

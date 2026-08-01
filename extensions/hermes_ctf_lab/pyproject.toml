@@ -1,0 +1,16 @@
+[build-system]
+requires = ["hatchling>=1.25,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hermes-ctf-lab"
+version = "0.1.0"
+description = "Teaching-only CTF and exploit lab extension for Hermes"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Proprietary" }
+dependencies = []
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/hermes_ctf_lab"]
+

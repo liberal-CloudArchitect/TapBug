@@ -1,0 +1,16 @@
+# Hermes strict RoE policy.  The installed core defaults to plan-only execution.
+profile: local-lab
+automation_allowed: false
+dry_run: true
+rate_limit_rps: 1
+max_requests: 25
+max_duration_seconds: 60
+max_concurrency: 1
+allowed_commands: []
+rules:
+  - host: 127.0.0.1
+    schemes: [http]
+    ports: [3000]
+    allow_dns: false
+    allow_private: true
+    profile: local-lab

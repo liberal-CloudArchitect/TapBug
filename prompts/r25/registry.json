@@ -1,0 +1,34 @@
+{
+  "version": "25",
+  "collection_sha256": "sha256:261f11a5e3d52ab307ea328a0bfaf4ee0cc67e3623490a652d9697cb6517e039",
+  "roles": {
+    "researcher": {
+      "agent_path": "agents/r25/researcher.md",
+      "prompt_path": "prompts/r25/researcher.md",
+      "prompt_id": "hermes.researcher",
+      "prompt_version": "25.1",
+      "prompt_sha256": "sha256:3864a880b1a7c8cc6090066b4edb31c592393ba56b390641e5c46fb8443e4050",
+      "output_contract_id": "hermes.r25.research_facts/v1",
+      "operations": [
+        "research"
+      ],
+      "allowed_ipc": [
+        "model_request"
+      ]
+    },
+    "capability-planner": {
+      "agent_path": "agents/r25/capability-planner.md",
+      "prompt_path": "prompts/r25/capability-planner.md",
+      "prompt_id": "hermes.capability-planner",
+      "prompt_version": "25.1",
+      "prompt_sha256": "sha256:3ff888870a19d2670c3bfb73ff20a568e3ff94a0f04221df76d17424e1a4e16d",
+      "output_contract_id": "hermes.r25.capability_spec/v2",
+      "operations": [
+        "plan"
+      ],
+      "allowed_ipc": [
+        "model_request"
+      ]
+    }
+  }
+}

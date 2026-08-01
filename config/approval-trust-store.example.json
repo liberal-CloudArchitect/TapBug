@@ -1,0 +1,14 @@
+{
+  "version": "2",
+  "keys": [
+    {
+      "key_id": "approver-2026-01",
+      "public_key": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "usages": ["approval"],
+      "status": "active",
+      "valid_from": "2026-01-01T00:00:00Z",
+      "valid_until": "2027-01-01T00:00:00Z",
+      "revoked_at": null
+    }
+  ]
+}

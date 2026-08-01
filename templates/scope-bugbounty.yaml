@@ -1,0 +1,30 @@
+# Hermes ScopePolicy 模板。只能填写当前 Engagement Brief 明确授权的内容。
+# 项目名、Brief URL、查看日期、out-of-scope 和数据处理条款请保存在
+# 独立的人工授权记录中；ScopePolicy 是只包含可执行策略的 fail-closed schema。
+
+profile: bug-bounty-plan
+automation_allowed: false
+dry_run: true
+rate_limit_rps: 1
+max_requests: 25
+max_duration_seconds: 60
+max_concurrency: 1
+allowed_commands: []
+
+rules:
+  # 精确 host 不会隐式授权子域。
+  - host: www.example.com
+    schemes: [https]
+    ports: [443]
+    allow_dns: true
+    allow_private: false
+    profile: bug-bounty-plan
+
+  # 只有 Brief 明确允许 wildcard 时才可启用。Wildcard 不包含根域本身。
+  # - host: "*.api.example.com"
+  #   schemes: [https]
+  #   ports: [443]
+  #   allow_dns: true
+  #   allow_private: false
+  #   profile: bug-bounty-plan
+

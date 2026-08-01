@@ -1,0 +1,17 @@
+{
+  "_comment": "把此 hooks 块合并进项目 .claude/settings.json（或 ~/.claude/settings.json），即可启用确定性硬护栏。合并后本项目每次 Bash 调用都会先经 guardrail.py 做 scope+危险命令校验。停用则删除该块。",
+  "_interpreter_note": "命令使用项目 .venv 解释器（已含 pyyaml，可读取 scope.yaml 的 rules schema）。guardrail.py 仅需 stdlib+pyyaml；缺 pyyaml 时会优雅降级为空 scope。若 .venv 路径不同，改下面的绝对路径即可。",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Volumes/Samsung/TapBug/Hermes-安全检查团队/.venv/bin/python /Volumes/Samsung/TapBug/Hermes-安全检查团队/hooks/guardrail.py"
+          }
+        ]
+      }
+    ]
+  }
+}

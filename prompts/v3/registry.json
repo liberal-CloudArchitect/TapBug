@@ -1,0 +1,96 @@
+{
+  "version": "3",
+  "collection_sha256": "sha256:888da39f305d6174f62375328dd4f4dc7d0f6aca0192218d7d25b5341eed72f2",
+  "roles": {
+    "gatekeeper": {
+      "agent_path": "agents/v3/gatekeeper.md",
+      "prompt_path": "prompts/v3/gatekeeper.md",
+      "prompt_id": "hermes.gatekeeper",
+      "prompt_version": "3.0",
+      "prompt_sha256": "sha256:1421e03100db0b28115c1020a767e6c31e8223a0a70cabf86fdec224fa8ee5ec",
+      "output_contract_id": "hermes.gate_decision/v3",
+      "operations": ["gate"],
+      "allowed_ipc": ["model_request"]
+    },
+    "recon": {
+      "agent_path": "agents/v3/recon.md",
+      "prompt_path": "prompts/v3/recon.md",
+      "prompt_id": "hermes.recon",
+      "prompt_version": "3.0",
+      "prompt_sha256": "sha256:e22b5b4999fa086fb99d3565251845b093aeb79e50278328dbb03525cc2c8269",
+      "output_contract_id": "hermes.asset_inventory/v3",
+      "operations": ["recon"],
+      "allowed_ipc": ["model_request", "gateway_action"]
+    },
+    "mapper": {
+      "agent_path": "agents/v3/mapper.md",
+      "prompt_path": "prompts/v3/mapper.md",
+      "prompt_id": "hermes.mapper",
+      "prompt_version": "3.0",
+      "prompt_sha256": "sha256:f33f1543ccf3db5550ee6767fcf958213dbc028225f87bddec9fc8a712546f39",
+      "output_contract_id": "hermes.endpoint_inventory/v3",
+      "operations": ["map"],
+      "allowed_ipc": ["model_request"]
+    },
+    "web-vuln": {
+      "agent_path": "agents/v3/web-vuln.md",
+      "prompt_path": "prompts/v3/web-vuln.md",
+      "prompt_id": "hermes.web-vuln",
+      "prompt_version": "3.1",
+      "prompt_sha256": "sha256:6bde42c5a0e1c97dfa62c43c9abc7ef2357f68a63c12d65ca45919c0ca30b37f",
+      "output_contract_id": "hermes.branch_operation/v3",
+      "operations": ["assessment", "cross_review"],
+      "allowed_ipc": ["model_request"]
+    },
+    "api": {
+      "agent_path": "agents/v3/api.md",
+      "prompt_path": "prompts/v3/api.md",
+      "prompt_id": "hermes.api",
+      "prompt_version": "3.1",
+      "prompt_sha256": "sha256:6f988ff90b324e1751d875b7f82f506340ff434fdcb5361d97f377694680da60",
+      "output_contract_id": "hermes.branch_operation/v3",
+      "operations": ["assessment", "cross_review"],
+      "allowed_ipc": ["model_request"]
+    },
+    "authz": {
+      "agent_path": "agents/v3/authz.md",
+      "prompt_path": "prompts/v3/authz.md",
+      "prompt_id": "hermes.authz",
+      "prompt_version": "3.1",
+      "prompt_sha256": "sha256:b2ac77d310b4330a905592157c76d0a603c9cd0f2ca64aed1d1688a910619201",
+      "output_contract_id": "hermes.branch_operation/v3",
+      "operations": ["assessment", "cross_review"],
+      "allowed_ipc": ["model_request"]
+    },
+    "infra": {
+      "agent_path": "agents/v3/infra.md",
+      "prompt_path": "prompts/v3/infra.md",
+      "prompt_id": "hermes.infra",
+      "prompt_version": "3.1",
+      "prompt_sha256": "sha256:73ff266274eb1a3b9543b2a3e878f78e6822ed3315d8fb8f14fda51514361187",
+      "output_contract_id": "hermes.branch_operation/v3",
+      "operations": ["assessment", "cross_review"],
+      "allowed_ipc": ["model_request"]
+    },
+    "verifier": {
+      "agent_path": "agents/v3/verifier.md",
+      "prompt_path": "prompts/v3/verifier.md",
+      "prompt_id": "hermes.verifier",
+      "prompt_version": "3.1",
+      "prompt_sha256": "sha256:5a8a9bf9c59e3a8fd6c2d93e295a68718028ef4d4575e8b6e951915ddd3eb9db",
+      "output_contract_id": "hermes.verification_outcome_set/v3",
+      "operations": ["verification"],
+      "allowed_ipc": ["model_request", "gateway_action"]
+    },
+    "reporter": {
+      "agent_path": "agents/v3/reporter.md",
+      "prompt_path": "prompts/v3/reporter.md",
+      "prompt_id": "hermes.reporter",
+      "prompt_version": "3.0",
+      "prompt_sha256": "sha256:876fe228f118427acba155d4f4460c6a586fb4418dfc575bad5b3d7a9b85528e",
+      "output_contract_id": "hermes.reporter_acknowledgement/v3",
+      "operations": ["reporting"],
+      "allowed_ipc": ["model_request"]
+    }
+  }
+}

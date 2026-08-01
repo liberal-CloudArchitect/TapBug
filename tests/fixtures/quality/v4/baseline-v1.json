@@ -1,0 +1,13 @@
+{
+  "version": "fixture-v4",
+  "families": [
+    {"family": "missing_x_content_type_options", "positive": 20, "negative": 20, "verified": 20},
+    {"family": "insecure_session_cookie", "positive": 20, "negative": 20, "verified": 20},
+    {"family": "exposed_debug_endpoint", "positive": 20, "negative": 20, "verified": 20},
+    {"family": "unauthorized_graphql_mutation", "positive": 20, "negative": 20, "verified": 20},
+    {"family": "privilege_escalation", "positive": 20, "negative": 20, "verified": 20},
+    {"family": "cross_tenant_object_read", "positive": 20, "negative": 20, "verified": 20},
+    {"family": "unvalidated_redirect", "positive": 20, "negative": 20, "verified": 20},
+    {"family": "workflow_transition_bypass", "positive": 20, "negative": 20, "verified": 20}
+  ]
+}

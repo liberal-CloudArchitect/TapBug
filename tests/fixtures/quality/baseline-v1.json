@@ -1,0 +1,8 @@
+{
+  "version": "fixture-v1",
+  "cases": [
+    {"id": "public-api", "expected": "none"},
+    {"id": "missing-header", "expected": "candidate"},
+    {"id": "owned-object-control", "expected": "none"}
+  ]
+}

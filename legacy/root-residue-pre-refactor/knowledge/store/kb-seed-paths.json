@@ -1,0 +1,9 @@
+{
+  "id": "kb-seed-paths",
+  "kind": "path",
+  "tags": ["infra", "exposure", "recon"],
+  "paths": ["/.env.bak", "/phpinfo.php", "/.htpasswd", "/wp-config.php.bak"],
+  "note": "过往交战中确认过的高价值敏感路径，默认字典未含；供 infra 专家跨任务复用（知识复利）。",
+  "vuln_class": "Sensitive Data Exposure",
+  "created": "2026-07-01T00:00:00Z"
+}

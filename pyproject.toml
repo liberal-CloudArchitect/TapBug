@@ -1,0 +1,55 @@
+[build-system]
+requires = ["hatchling==1.31.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hermes-security-team"
+version = "0.1.0"
+description = "Policy-governed, evidence-first security assessment orchestration"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Proprietary" }
+authors = [{ name = "Hermes Security Team" }]
+dependencies = [
+  "agent-client-protocol==0.9.0",
+  "cryptography>=42,<50",
+  "httpx>=0.27,<1",
+  "pydantic>=2.7,<3",
+  "PyYAML>=6,<7",
+]
+
+[project.optional-dependencies]
+dev = [
+  "mypy>=1.10,<2",
+  "pytest>=8,<10",
+  "ruff>=0.5,<1",
+]
+
+[project.scripts]
+hermes-security = "hermes.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/hermes"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = ["-ra"]
+markers = [
+  "integration: requires a local loopback listener; CI must not skip it",
+  "provider_e2e: requires configured Hermes Agent credentials and Docker",
+]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+extend-exclude = ["extensions", "legacy"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.mypy]
+python_version = "3.11"
+files = ["src/hermes"]
+strict = true
+warn_unused_ignores = true

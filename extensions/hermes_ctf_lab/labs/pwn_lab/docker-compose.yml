@@ -1,0 +1,12 @@
+services:
+  pwnlab:
+    container_name: pwnlab
+    build: .
+    image: hermes-pwnlab
+    ports:
+      - "1338:1338"
+    networks:
+      - shared_net
+networks:
+  shared_net:
+    external: true

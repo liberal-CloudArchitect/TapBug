@@ -1,0 +1,53 @@
+{
+  "version": "1",
+  "roles": {
+    "gatekeeper": {
+      "agent_path": "agents/gatekeeper.md",
+      "prompt_path": "prompts/gatekeeper/v2.md",
+      "prompt_version": "2.0",
+      "prompt_sha256": "sha256:c24d5f1104c85ccb62ff72024f81f30c611350348e196d3c21c22b92a840275f",
+      "output_contract_id": "hermes.gate_decision/v2",
+      "allowed_ipc": ["model_request"]
+    },
+    "recon": {
+      "agent_path": "agents/recon.md",
+      "prompt_path": "prompts/recon/v2.md",
+      "prompt_version": "2.0",
+      "prompt_sha256": "sha256:8d78389db26419296f0241c24a5e06240ee5ebe0cb4703ab90aa23e255af9929",
+      "output_contract_id": "hermes.asset_inventory/v2",
+      "allowed_ipc": ["model_request", "gateway_action"]
+    },
+    "mapper": {
+      "agent_path": "agents/mapper.md",
+      "prompt_path": "prompts/mapper/v2.md",
+      "prompt_version": "2.0",
+      "prompt_sha256": "sha256:ac56ea4a079335465079bc3591c2f76a49926245c9b5571ffc7972d60e3adc95",
+      "output_contract_id": "hermes.endpoint_inventory/v2",
+      "allowed_ipc": ["model_request"]
+    },
+    "web-vuln": {
+      "agent_path": "agents/web-vuln.md",
+      "prompt_path": "prompts/web-vuln/v2.md",
+      "prompt_version": "2.0",
+      "prompt_sha256": "sha256:815cd9554becdd5751edbd8f9ef6e0688533684cf3945280ea6f7965171583fb",
+      "output_contract_id": "hermes.candidate_set/v2",
+      "allowed_ipc": ["model_request"]
+    },
+    "verifier": {
+      "agent_path": "agents/verifier.md",
+      "prompt_path": "prompts/verifier/v2.md",
+      "prompt_version": "2.0",
+      "prompt_sha256": "sha256:5bc6f518d4a948175fa4be1aa02ac71aeb0972d09d42cf68cccaa8265a8bc104",
+      "output_contract_id": "hermes.verification_outcome/v2",
+      "allowed_ipc": ["model_request", "gateway_action"]
+    },
+    "reporter": {
+      "agent_path": "agents/reporter.md",
+      "prompt_path": "prompts/reporter/v2.md",
+      "prompt_version": "2.0",
+      "prompt_sha256": "sha256:d17b51a0cd1056b0c584ee5a4e6d8e3e9c7ff197e877ce9920bd0e42ba3b6e1f",
+      "output_contract_id": "hermes.reporter_acknowledgement/v2",
+      "allowed_ipc": ["model_request"]
+    }
+  }
+}

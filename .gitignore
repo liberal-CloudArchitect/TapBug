@@ -1,0 +1,24 @@
+# Virtualenvs / build
+.venv/
+dist/
+build/
+*.egg-info/
+*.egg-link
+
+# Caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+__pycache__/
+*.py[cod]
+
+# Run outputs and large regenerable E2E artifacts (referenced by docs, not versioned)
+runs/
+artifacts/
+
+# Local operator credentials must never become project artifacts.
+.env
+
+# Editor / OS
+.DS_Store
+.omx/

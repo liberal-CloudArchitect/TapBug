@@ -1,0 +1,15 @@
+profile: local-lab
+automation_allowed: true
+dry_run: false
+rate_limit_rps: 10
+max_requests: 3
+max_duration_seconds: 120
+max_concurrency: 1
+allowed_commands: []
+rules:
+  - host: localhost
+    schemes: [http]
+    ports: [49152]
+    allow_dns: true
+    allow_private: true
+    profile: local-lab

@@ -1,0 +1,22 @@
+# scope.yaml 模板与字段说明 —— 复制到项目根 scope.yaml 后填写。
+# 硬护栏 hooks/guardrail.py 依赖以下字段做确定性拦截。
+
+engagement: "<本次评估的名称>"
+platform: "bugcrowd"            # bugcrowd | hackerone | ctf | local-lab
+authorized_by: "<授权来源：项目 Brief 链接 / 自建靶场>"
+authorized_at: "<YYYY-MM-DD>"
+
+dry_run: on                     # on/off。on=只规划与只读侦察；主动触网需 HITL
+allow_localhost: false          # 真实目标一般 false；本地靶场 true
+automation_allowed: true        # 项目是否允许自动化扫描（Bugcrowd 部分禁止！先查 Brief）
+rate_limit_rps: 5               # 速率上限，遵守项目 Rules of Engagement
+
+in_scope:                       # 授权资产：域名 / *.通配 / IP / CIDR / URL 主机
+  - "*.example.com"
+  - "203.0.113.0/24"
+
+out_of_scope:                   # 排除项，优先级高于 in_scope
+  - "admin.example.com"
+
+notes: |
+  记录项目特殊规则：禁测项、限速、社工禁止、需登录测试账号等。

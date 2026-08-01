@@ -1,0 +1,14 @@
+{
+  "engagement": "Phase 0/1 本地靶场演练",
+  "scope_digest": "sha256:<scope.yaml 快照摘要>",
+  "dry_run": true,
+  "current_phase": "auth",
+  "phases_done": [],
+  "budget": {"max_parallel": 4, "time_limit_min": 60, "spent_min": 0},
+  "assets": [],
+  "entrypoints": [],
+  "candidates": [],
+  "findings": [],
+  "hitl_log": [],
+  "updated_at": "2026-07-05T00:00:00Z"
+}

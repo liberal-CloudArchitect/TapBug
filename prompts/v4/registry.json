@@ -1,0 +1,138 @@
+{
+  "version": "4",
+  "collection_sha256": "sha256:e28ceee5d0efac45cef27513604756b4cf2dbf27cc5e24aac33949ec332357e6",
+  "roles": {
+    "gatekeeper": {
+      "agent_path": "agents/v4/gatekeeper.md",
+      "prompt_path": "prompts/v4/gatekeeper.md",
+      "prompt_id": "hermes.gatekeeper",
+      "prompt_version": "4.0",
+      "prompt_sha256": "sha256:b1b3a6e9857166daeadd9094f6f20bd34fb2fd2e01a7498d17455bd286ed9bbd",
+      "output_contract_id": "hermes.gate_decision/v4",
+      "operations": [
+        "gate"
+      ],
+      "allowed_ipc": [
+        "model_request"
+      ]
+    },
+    "recon": {
+      "agent_path": "agents/v4/recon.md",
+      "prompt_path": "prompts/v4/recon.md",
+      "prompt_id": "hermes.recon",
+      "prompt_version": "4.0",
+      "prompt_sha256": "sha256:323f7197e1e31a72d7ed3b91b7498ff6bca3266c54f2464ab78034710ec99b20",
+      "output_contract_id": "hermes.asset_inventory/v4",
+      "operations": [
+        "recon"
+      ],
+      "allowed_ipc": [
+        "model_request",
+        "gateway_action"
+      ]
+    },
+    "mapper": {
+      "agent_path": "agents/v4/mapper.md",
+      "prompt_path": "prompts/v4/mapper.md",
+      "prompt_id": "hermes.mapper",
+      "prompt_version": "4.0",
+      "prompt_sha256": "sha256:09dfc65ca32c0dc6bf1e6ee4bffe84e6d3aeecf6803e19a539eddef82bc1abed",
+      "output_contract_id": "hermes.surface_map/v4",
+      "operations": [
+        "map"
+      ],
+      "allowed_ipc": [
+        "model_request"
+      ]
+    },
+    "web-vuln": {
+      "agent_path": "agents/v4/web-vuln.md",
+      "prompt_path": "prompts/v4/web-vuln.md",
+      "prompt_id": "hermes.web-vuln",
+      "prompt_version": "4.1",
+      "prompt_sha256": "sha256:fff5dc8bba4dd6cfcdbc86815bfd670052ad02d468eb344e28bf38d1c80fd150",
+      "output_contract_id": "hermes.branch_operation/v4",
+      "operations": [
+        "assessment",
+        "cross_review"
+      ],
+      "allowed_ipc": [
+        "model_request"
+      ]
+    },
+    "api": {
+      "agent_path": "agents/v4/api.md",
+      "prompt_path": "prompts/v4/api.md",
+      "prompt_id": "hermes.api",
+      "prompt_version": "4.1",
+      "prompt_sha256": "sha256:b54b3afcff2d98251cb0ba4edc866b81c36c07799ead1d7a6ff928029668a978",
+      "output_contract_id": "hermes.branch_operation/v4",
+      "operations": [
+        "assessment",
+        "cross_review"
+      ],
+      "allowed_ipc": [
+        "model_request"
+      ]
+    },
+    "authz": {
+      "agent_path": "agents/v4/authz.md",
+      "prompt_path": "prompts/v4/authz.md",
+      "prompt_id": "hermes.authz",
+      "prompt_version": "4.1",
+      "prompt_sha256": "sha256:b3d1a1ae87f84fbd7b40c638e0dd9c2c7aa3dbe7aa63c782f1c7eaef9edfa2be",
+      "output_contract_id": "hermes.branch_operation/v4",
+      "operations": [
+        "assessment",
+        "cross_review"
+      ],
+      "allowed_ipc": [
+        "model_request"
+      ]
+    },
+    "infra": {
+      "agent_path": "agents/v4/infra.md",
+      "prompt_path": "prompts/v4/infra.md",
+      "prompt_id": "hermes.infra",
+      "prompt_version": "4.1",
+      "prompt_sha256": "sha256:e4308308f20f518c2505edc118971c1b1b283a3a440ed18aa0c674a67ff0d8fc",
+      "output_contract_id": "hermes.branch_operation/v4",
+      "operations": [
+        "assessment",
+        "cross_review"
+      ],
+      "allowed_ipc": [
+        "model_request"
+      ]
+    },
+    "verifier": {
+      "agent_path": "agents/v4/verifier.md",
+      "prompt_path": "prompts/v4/verifier.md",
+      "prompt_id": "hermes.verifier",
+      "prompt_version": "4.1",
+      "prompt_sha256": "sha256:878c0de37c67c4da6e97ba48dc6a0b8cc1bed49c341d40479e65f7a11c79cdcd",
+      "output_contract_id": "hermes.verification_outcome_set/v4",
+      "operations": [
+        "verification"
+      ],
+      "allowed_ipc": [
+        "model_request",
+        "gateway_action"
+      ]
+    },
+    "reporter": {
+      "agent_path": "agents/v4/reporter.md",
+      "prompt_path": "prompts/v4/reporter.md",
+      "prompt_id": "hermes.reporter",
+      "prompt_version": "4.0",
+      "prompt_sha256": "sha256:9bdc5e8ef2d55c07023bafd6175dae77f2fc2cd758d520247c7c3fd224b1d5c5",
+      "output_contract_id": "hermes.reporter_acknowledgement/v4",
+      "operations": [
+        "reporting"
+      ],
+      "allowed_ipc": [
+        "model_request"
+      ]
+    }
+  }
+}

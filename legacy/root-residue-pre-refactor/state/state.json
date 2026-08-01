@@ -1,0 +1,224 @@
+{
+  "engagement": "Phase 0/1 本地靶场演练",
+  "scope_digest": "sha256:24de33138cbbfcb1",
+  "dry_run": true,
+  "targets": [
+    "http://127.0.0.1:8899"
+  ],
+  "max_parallel": 4,
+  "current_phase": "distill",
+  "phases_done": [
+    "recon",
+    "mapping",
+    "identify",
+    "verify",
+    "report",
+    "distill"
+  ],
+  "assets": [
+    {
+      "host": "127.0.0.1",
+      "source": "http_probe",
+      "ip": "127.0.0.1",
+      "in_scope": true,
+      "tech": [
+        "AcmePortal/2.3.1"
+      ],
+      "notes": "status=200 title='Acme Lab'"
+    }
+  ],
+  "entrypoints": [
+    {
+      "url": "http://127.0.0.1:8899/",
+      "method": "GET",
+      "params": [],
+      "fields": [],
+      "type": "web",
+      "auth": null
+    },
+    {
+      "url": "http://127.0.0.1:8899/search",
+      "method": "GET",
+      "params": [
+        "q"
+      ],
+      "fields": [
+        "q"
+      ],
+      "type": "web",
+      "auth": null,
+      "is_login": false,
+      "pwd_field": null,
+      "user_field": "q"
+    },
+    {
+      "url": "http://127.0.0.1:8899/api/profile",
+      "method": "GET",
+      "params": [
+        "id"
+      ],
+      "fields": [],
+      "type": "api",
+      "auth": null,
+      "is_login": false
+    }
+  ],
+  "candidates": [
+    {
+      "id": "missing-sec-headers-127.0.0.1:8899",
+      "title": "缺失安全响应头: content-security-policy, x-frame-options, x-content-type-options, strict-transport-security, referrer-policy",
+      "entrypoint": "http://127.0.0.1:8899/",
+      "class": "Security Misconfiguration",
+      "confidence": "high",
+      "evidence_needed": "只读复现",
+      "vrt_guess": "server_security_misconfiguration.security_headers"
+    },
+    {
+      "id": "verbose-server-127.0.0.1:8899",
+      "title": "Server 头泄露组件版本: AcmePortal/2.3.1",
+      "entrypoint": "http://127.0.0.1:8899/",
+      "class": "Information Disclosure",
+      "confidence": "low",
+      "evidence_needed": "只读复现",
+      "vrt_guess": "server_security_misconfiguration.information_disclosure"
+    },
+    {
+      "id": "reflected-xss-q-127.0.0.1:8899",
+      "title": "参数 q 反射未转义，反射型 XSS",
+      "entrypoint": "GET http://127.0.0.1:8899/search",
+      "class": "XSS",
+      "confidence": "high",
+      "evidence_needed": "只读复现",
+      "vrt_guess": "cross_site_scripting_xss.reflected.non_self"
+    },
+    {
+      "id": "api-noauth-127.0.0.1:8899-api-profile",
+      "title": "API 端点无需鉴权即可访问",
+      "entrypoint": "http://127.0.0.1:8899/api/profile?id=1",
+      "class": "Broken Authentication",
+      "confidence": "medium",
+      "evidence_needed": "只读复现",
+      "vrt_guess": "broken_authentication_and_session_management.authentication_bypass"
+    },
+    {
+      "id": "api-errleak-127.0.0.1:8899",
+      "title": "API 错误响应泄露内部信息（SQL/堆栈）",
+      "entrypoint": "http://127.0.0.1:8899/api/profile?id=abc%27",
+      "class": "Information Disclosure",
+      "confidence": "medium",
+      "evidence_needed": "只读复现",
+      "vrt_guess": "server_security_misconfiguration.information_disclosure.detailed_error_messages"
+    },
+    {
+      "id": "idor-id-127.0.0.1:8899",
+      "title": "参数 id 存在 IDOR/BOLA：无鉴权即可越权访问他人对象",
+      "entrypoint": "http://127.0.0.1:8899/api/profile?id=1",
+      "class": "Broken Access Control",
+      "confidence": "high",
+      "evidence_needed": "只读复现",
+      "vrt_guess": "broken_access_control.idor"
+    },
+    {
+      "id": "exposed-.env-127.0.0.1:8899",
+      "title": "敏感文件/路径暴露: /.env",
+      "entrypoint": "http://127.0.0.1:8899/.env",
+      "class": "Sensitive Data Exposure",
+      "confidence": "high",
+      "evidence_needed": "只读复现",
+      "vrt_guess": "sensitive_data_exposure.disclosure_of_secrets"
+    },
+    {
+      "id": "exposed-.git-config-127.0.0.1:8899",
+      "title": "敏感文件/路径暴露: /.git/config",
+      "entrypoint": "http://127.0.0.1:8899/.git/config",
+      "class": "Sensitive Data Exposure",
+      "confidence": "high",
+      "evidence_needed": "只读复现",
+      "vrt_guess": "sensitive_data_exposure.disclosure_of_secrets"
+    },
+    {
+      "id": "exposed-backup.zip-127.0.0.1:8899",
+      "title": "敏感文件/路径暴露: /backup.zip",
+      "entrypoint": "http://127.0.0.1:8899/backup.zip",
+      "class": "Sensitive Data Exposure",
+      "confidence": "high",
+      "evidence_needed": "只读复现",
+      "vrt_guess": "sensitive_data_exposure.disclosure_of_secrets"
+    },
+    {
+      "id": "exposed-admin-127.0.0.1:8899",
+      "title": "敏感文件/路径暴露: /admin",
+      "entrypoint": "http://127.0.0.1:8899/admin",
+      "class": "Sensitive Data Exposure",
+      "confidence": "medium",
+      "evidence_needed": "只读复现",
+      "vrt_guess": "server_security_misconfiguration.exposed_sensitive_path"
+    }
+  ],
+  "verified": [
+    "missing-sec-headers-127.0.0.1:8899",
+    "verbose-server-127.0.0.1:8899",
+    "reflected-xss-q-127.0.0.1:8899",
+    "api-noauth-127.0.0.1:8899-api-profile",
+    "api-errleak-127.0.0.1:8899",
+    "idor-id-127.0.0.1:8899",
+    "exposed-.env-127.0.0.1:8899",
+    "exposed-.git-config-127.0.0.1:8899",
+    "exposed-backup.zip-127.0.0.1:8899",
+    "exposed-admin-127.0.0.1:8899"
+  ],
+  "findings": [
+    {
+      "id": "missing-sec-headers-127.0.0.1:8899",
+      "severity": "P4",
+      "file": "findings/missing-sec-headers-127-0-0-1-8899.md"
+    },
+    {
+      "id": "verbose-server-127.0.0.1:8899",
+      "severity": "P5",
+      "file": "findings/verbose-server-127-0-0-1-8899.md"
+    },
+    {
+      "id": "reflected-xss-q-127.0.0.1:8899",
+      "severity": "P3",
+      "file": "findings/reflected-xss-q-127-0-0-1-8899.md"
+    },
+    {
+      "id": "api-noauth-127.0.0.1:8899-api-profile",
+      "severity": "P3",
+      "file": "findings/api-noauth-127-0-0-1-8899-api-profile.md"
+    },
+    {
+      "id": "api-errleak-127.0.0.1:8899",
+      "severity": "P4",
+      "file": "findings/api-errleak-127-0-0-1-8899.md"
+    },
+    {
+      "id": "idor-id-127.0.0.1:8899",
+      "severity": "P2",
+      "file": "findings/idor-id-127-0-0-1-8899.md"
+    },
+    {
+      "id": "exposed-.env-127.0.0.1:8899",
+      "severity": "P2",
+      "file": "findings/exposed-env-127-0-0-1-8899.md"
+    },
+    {
+      "id": "exposed-.git-config-127.0.0.1:8899",
+      "severity": "P2",
+      "file": "findings/exposed-git-config-127-0-0-1-8899.md"
+    },
+    {
+      "id": "exposed-backup.zip-127.0.0.1:8899",
+      "severity": "P2",
+      "file": "findings/exposed-backup-zip-127-0-0-1-8899.md"
+    },
+    {
+      "id": "exposed-admin-127.0.0.1:8899",
+      "severity": "P3",
+      "file": "findings/exposed-admin-127-0-0-1-8899.md"
+    }
+  ],
+  "hitl_log": [],
+  "updated_at": "2026-07-08T09:53:34Z"
+}

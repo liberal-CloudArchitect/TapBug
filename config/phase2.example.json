@@ -1,0 +1,13 @@
+{
+  "runs_root": "../runs",
+  "role_manifests": "./role-manifests.json",
+  "role_trust_store": "./publisher-trust-store.json",
+  "approval_trust_store": "./approval-trust-store.json",
+  "review_trust_store": "./review-trust-store.json",
+  "prompt_root": "..",
+  "hermes_cli": "/path/to/hermes",
+  "hermes_python": "/path/to/hermes-agent-python",
+  "restricted_bridge": "../scripts/restricted_hermes_acp.py",
+  "model": "deepseek-v4-flash",
+  "docker_binary": "docker"
+}

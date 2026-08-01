@@ -1,0 +1,103 @@
+name: Localhost ACP acceptance
+
+on:
+  workflow_dispatch:
+    inputs:
+      include_phase5:
+        description: Run the Phase 5 V4 acceptance driver after V2/V3/R2.5
+        required: true
+        default: true
+        type: boolean
+
+permissions:
+  contents: read
+
+jobs:
+  acceptance:
+    # This job deliberately targets an administratively protected self-hosted
+    # runner: Hermes credentials remain in the agent's own credential store and
+    # are never copied into repository configuration or workflow artifacts.
+    runs-on: [self-hosted, hermes-acceptance]
+    # V4's main and resilience matrices each use real ACP sessions.  Keep one
+    # bounded protected-runner job rather than silently dropping a resilience
+    # gate when a provider is slow.
+    timeout-minutes: 180
+    env:
+      HERMES_ACP_CLI: ${{ vars.HERMES_ACP_CLI }}
+      HERMES_ACP_PYTHON: ${{ vars.HERMES_ACP_PYTHON }}
+      HERMES_E2E_MODEL: ${{ vars.HERMES_E2E_MODEL }}
+      HERMES_SANDBOX_IMAGE: ${{ vars.HERMES_SANDBOX_IMAGE }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install and validate acceptance prerequisites
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -c requirements.lock '.[dev]' hatchling==1.31.0
+          test -n "$HERMES_ACP_CLI"
+          test -n "$HERMES_ACP_PYTHON"
+          test -n "$HERMES_E2E_MODEL"
+          test -n "$HERMES_SANDBOX_IMAGE"
+          test -x "$HERMES_ACP_CLI"
+          test -x "$HERMES_ACP_PYTHON"
+          docker info
+      - name: Static and non-provider gates
+        run: |
+          python -m ruff check src containers scripts tests
+          python -m mypy src/hermes
+          HERMES_SANDBOX_IMAGE="$HERMES_SANDBOX_IMAGE" python -m pytest -q
+      - name: Phase 2 governed vertical acceptance
+        run: |
+          python scripts/run_phase2_e2e.py \
+            --hermes-cli "$HERMES_ACP_CLI" \
+            --hermes-python "$HERMES_ACP_PYTHON" \
+            --model "$HERMES_E2E_MODEL" \
+            --artifact-root artifacts/phase2-e2e
+      - name: Phase 4 collaboration and resilience acceptance
+        run: |
+          python scripts/run_phase4_e2e.py \
+            --hermes-cli "$HERMES_ACP_CLI" \
+            --hermes-python "$HERMES_ACP_PYTHON" \
+            --model "$HERMES_E2E_MODEL" \
+            --artifact-root artifacts/phase4-e2e
+          python scripts/run_phase4_resilience_e2e.py \
+            --hermes-cli "$HERMES_ACP_CLI" \
+            --hermes-python "$HERMES_ACP_PYTHON" \
+            --model "$HERMES_E2E_MODEL" \
+            --artifact-root artifacts/phase4-resilience-e2e
+      - name: R2.5 governed Wheel acceptance
+        run: |
+          python scripts/run_r25_e2e.py \
+            --hermes-cli "$HERMES_ACP_CLI" \
+            --hermes-python "$HERMES_ACP_PYTHON" \
+            --model "$HERMES_E2E_MODEL" \
+            --artifact-root artifacts/r25-e2e
+      - name: Phase 5 V4 acceptance and resilience
+        if: ${{ inputs.include_phase5 }}
+        run: |
+          python scripts/run_phase5_e2e.py \
+            --hermes-cli "$HERMES_ACP_CLI" \
+            --hermes-python "$HERMES_ACP_PYTHON" \
+            --model "$HERMES_E2E_MODEL" \
+            --artifact-root artifacts/phase5-e2e
+          python scripts/run_phase5_resilience_e2e.py \
+            --hermes-cli "$HERMES_ACP_CLI" \
+            --hermes-python "$HERMES_ACP_PYTHON" \
+            --model "$HERMES_E2E_MODEL" \
+            --artifact-root artifacts/phase5-resilience-e2e
+      - name: Upload redacted acceptance artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: localhost-acp-acceptance-${{ github.run_id }}
+          path: |
+            artifacts/phase2-e2e
+            artifacts/phase4-e2e
+            artifacts/phase4-resilience-e2e
+            artifacts/r25-e2e
+            artifacts/phase5-e2e
+            artifacts/phase5-resilience-e2e
+          if-no-files-found: warn
+          retention-days: 14

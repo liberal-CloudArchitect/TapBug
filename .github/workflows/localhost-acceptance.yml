@@ -27,6 +27,10 @@ jobs:
       HERMES_ACP_PYTHON: ${{ vars.HERMES_ACP_PYTHON }}
       HERMES_E2E_MODEL: ${{ vars.HERMES_E2E_MODEL }}
       HERMES_SANDBOX_IMAGE: ${{ vars.HERMES_SANDBOX_IMAGE }}
+      # Retry a spurious pre-branch (Recon) provider failure as a fresh run so a
+      # lightweight model's occasional non-schema Recon payload does not abort an
+      # otherwise valid acceptance (see docs/15 §11.4).
+      HERMES_E2E_START_ATTEMPTS: "6"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -43,6 +47,18 @@ jobs:
           test -x "$HERMES_ACP_CLI"
           test -x "$HERMES_ACP_PYTHON"
           docker info
+      - name: Prepare pinned fixture base images
+        run: |
+          # Pull the exact digests the fixture Dockerfiles pin, and give the
+          # multi-arch alpine base a plain tag. Without a local tag, BuildKit
+          # re-resolves a digest-only ("<none>") base against the registry on
+          # every build and can stall for many minutes; a plain tag lets it
+          # resolve locally. See docs/15 §11.4.
+          slim="python:3.11-slim@sha256:cdbd05fb6f457ca275ff51ce00d93d865ca0b6a25f5ffb08262d94f6835771e5"
+          alpine="python:3.12-alpine@sha256:9ba6d8cbebf0fb6546ae71f2a1c14f6ffd2fdab83af7fa5669734ef30ad48844"
+          docker pull "$slim"
+          docker pull "$alpine"
+          docker tag "$alpine" python:3.12-alpine
       - name: Static and non-provider gates
         run: |
           python -m ruff check src containers scripts tests

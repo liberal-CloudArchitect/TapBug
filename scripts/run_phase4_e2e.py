@@ -719,20 +719,35 @@ class Driver:
                 str(config),
             ]
         )
-        state = self.cli(
-            [
-                "run",
-                "--schema-version",
-                "3",
-                "--config",
-                str(config),
-                "--scope",
-                str(scope),
-                "--target",
-                target,
-            ],
-            expected={20},
-        )
+        # Recon/Mapper/routing run before the first approval gate, so a failure
+        # here is a spurious pre-branch provider error (e.g. a lightweight model
+        # emitting a non-schema Recon payload), never a scenario-intended reject
+        # (rejections are applied later via _decision). Retry as a fresh run —
+        # the workflow's own next_required_action=retry_as_new_run.
+        attempts = int(os.environ.get("HERMES_E2E_START_ATTEMPTS", "4"))
+        state: dict[str, Any] = {}
+        for _attempt in range(attempts):
+            state = self.cli(
+                [
+                    "run",
+                    "--schema-version",
+                    "3",
+                    "--config",
+                    str(config),
+                    "--scope",
+                    str(scope),
+                    "--target",
+                    target,
+                ],
+                expected={20, 1},
+            )
+            if state.get("execution_state") != "failed":
+                break
+        else:
+            raise E2EFailure(
+                f"V3 run did not start after {attempts} attempts; "
+                f"last failure_code={state.get('failure_code')}"
+            )
         run_id = str(state["run_id"])
         self.run_ids.append(run_id)
 

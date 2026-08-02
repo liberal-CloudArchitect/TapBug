@@ -26,6 +26,8 @@ from collections.abc import Sequence
 from datetime import datetime
 from typing import Literal
 
+from pydantic import Field, field_validator, model_validator
+
 from .learning_contracts import LearningContract
 from .learning_recovery import (
     ActiveWheelView,
@@ -36,6 +38,9 @@ from .learning_recovery import (
     record_recovery_feedback,
 )
 from .r25_contracts import ContinuationOutcomeV1
+
+_DIGEST = r"^sha256:[0-9a-f]{64}$"
+_ID = r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
 
 
 class Cap07Error(RuntimeError):
@@ -81,6 +86,75 @@ def orchestrate_recovery(
     bundle = Cap07RecoveryBundle(pause=pause, binding=binding, feedback=feedback)
     verify_recovery_bundle(bundle)
     return bundle
+
+
+class Cap07CampaignResumeRecordV1(LearningContract):
+    """Binds a full assessment campaign run as the governed resume of a recovery.
+
+    The resume of a paused assessment is a *new* full V3/V4 assessment run — never
+    an in-place rewrite of the paused run — carried out only after the recovery
+    approved a Wheel for the gap. This record ties that campaign run back to the
+    recovery so an auditor can follow paused-assessment -> recovery -> resumed
+    campaign as one governed chain.
+
+    Scope boundary (kept honest): this records the campaign *ran as the bound
+    resume*. Making the campaign actually invoke the approved Wheel to resolve the
+    specific gap needs a purpose-built fixture whose assessment cannot proceed
+    without the Wheel, plus a governed Wheel-invocation hook in the assessment
+    roles — a further, still-open step (docs/15 §11.6 / §11.7).
+    """
+
+    version: Literal["1"] = "1"
+    recovery_bundle_digest: str = Field(pattern=_DIGEST)
+    paused_run_id: str = Field(pattern=_ID)
+    resume_run_id: str = Field(pattern=_ID)
+    resume_workflow: Literal["v3", "v4"]
+    resume_execution_state: Literal["completed", "completed_with_gaps"]
+    resume_findings: int = Field(ge=0)
+    wheel_manifest_digest: str = Field(pattern=_DIGEST)
+    bound_at: datetime
+
+    @field_validator("bound_at")
+    @classmethod
+    def aware_bound_at(cls, value: datetime) -> datetime:
+        if value.tzinfo is None:
+            raise ValueError("campaign resume time must be timezone-aware")
+        return value
+
+    @model_validator(mode="after")
+    def forbid_in_place_resume(self) -> Cap07CampaignResumeRecordV1:
+        if self.resume_run_id == self.paused_run_id:
+            raise ValueError("in-place resume is forbidden; a resume is a new run")
+        return self
+
+
+def bind_campaign_resume(
+    bundle: Cap07RecoveryBundle,
+    *,
+    resume_run_id: str,
+    resume_workflow: Literal["v3", "v4"],
+    resume_execution_state: Literal["completed", "completed_with_gaps"],
+    resume_findings: int,
+    now: datetime,
+) -> Cap07CampaignResumeRecordV1:
+    """Bind a completed assessment campaign run as the resume of ``bundle``.
+
+    Fail-closed: the campaign run must be a new run (not the paused run). The
+    record carries the recovery bundle digest and the approved Wheel so the whole
+    paused -> recovery -> resumed-campaign chain is verifiable.
+    """
+    if resume_run_id == bundle.pause.paused_run_id:
+        raise Cap07Error("resume campaign run must not be the paused run (no in-place resume)")
+    return Cap07CampaignResumeRecordV1(
+        recovery_bundle_digest=bundle.digest,
+        paused_run_id=bundle.pause.paused_run_id,
+        resume_run_id=resume_run_id,
+        resume_workflow=resume_workflow,
+        resume_execution_state=resume_execution_state,
+        resume_findings=resume_findings,
+        wheel_manifest_digest=bundle.binding.wheel_manifest_digest,
+        bound_at=now,
+    )
 
 
 def verify_recovery_bundle(bundle: Cap07RecoveryBundle) -> None:

@@ -14,8 +14,10 @@ import pytest
 from pydantic import ValidationError
 
 from hermes.cap07 import (
+    Cap07CampaignResumeRecordV1,
     Cap07Error,
     Cap07RecoveryBundle,
+    bind_campaign_resume,
     orchestrate_recovery,
     verify_recovery_bundle,
 )
@@ -154,3 +156,52 @@ def test_bundle_is_frozen() -> None:
     bundle = _bundle()
     with pytest.raises(ValidationError):
         bundle.pause = _pause()  # type: ignore[misc]
+
+
+# --- campaign resume binding ---------------------------------------------
+
+
+def test_bind_campaign_resume_records_a_new_bound_run() -> None:
+    bundle = _bundle()
+    record = bind_campaign_resume(
+        bundle,
+        resume_run_id="v4-resume-campaign-777",
+        resume_workflow="v4",
+        resume_execution_state="completed",
+        resume_findings=4,
+        now=_NOW,
+    )
+    assert isinstance(record, Cap07CampaignResumeRecordV1)
+    assert record.paused_run_id == _PARENT
+    assert record.resume_run_id == "v4-resume-campaign-777"
+    assert record.resume_run_id != record.paused_run_id
+    assert record.recovery_bundle_digest == bundle.digest
+    assert record.wheel_manifest_digest == bundle.binding.wheel_manifest_digest
+    assert record.resume_findings == 4
+
+
+def test_bind_campaign_resume_forbids_in_place() -> None:
+    bundle = _bundle()
+    with pytest.raises(Cap07Error):
+        bind_campaign_resume(
+            bundle,
+            resume_run_id=_PARENT,  # same as paused run
+            resume_workflow="v4",
+            resume_execution_state="completed",
+            resume_findings=4,
+            now=_NOW,
+        )
+
+
+def test_campaign_resume_record_model_also_forbids_in_place() -> None:
+    with pytest.raises(ValidationError):
+        Cap07CampaignResumeRecordV1(
+            recovery_bundle_digest=_D,
+            paused_run_id=_PARENT,
+            resume_run_id=_PARENT,
+            resume_workflow="v4",
+            resume_execution_state="completed",
+            resume_findings=4,
+            wheel_manifest_digest=_D,
+            bound_at=_NOW,
+        )

@@ -273,6 +273,9 @@ class EndpointV3(V3Contract):
         "diagnostic",
         "cleanup",
         "cleanup_check",
+        # A line_kv capability artifact the parent runtime cannot interpret
+        # unaided; drives the additive CAP-07 line_kv_capability_gap candidate.
+        "capability_config",
     ]
     content_types: tuple[str, ...] = ()
     auth_contexts: tuple[str, ...] = ()

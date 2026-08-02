@@ -399,6 +399,22 @@ def _candidate_actions(
             source.target_url,
             urljoin(base, "debug-control"),
         )
+    if candidate_type == "line_kv_capability_gap":
+        # One readonly fetch of the line_kv capability artifact (no identity, no
+        # negative control). The Verifier binds this evidence and then resolves
+        # the verdict through the approved Wheel (hermes.capability_verifier).
+        return (
+            _action(
+                run_id,
+                scope_digest,
+                f"verify-{candidate_id}-candidate",
+                candidate_id,
+                "candidate",
+                "readonly",
+                "GET",
+                source.target_url,
+            ),
+        )
     member = _identity(identities, "member")
     administrator = _identity(identities, "fixture-admin")
     if candidate_type == "unauthorized_graphql_mutation":

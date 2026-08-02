@@ -165,6 +165,10 @@ def build_candidate_blueprints(
     graphql = select_endpoint("graphql")
     role_change = select_endpoint("role_change")
     diagnostic = select_endpoint("diagnostic") or select_endpoint("debug")
+    # Additive CAP-07 relation: only present when the inventory offers a line_kv
+    # capability artifact. Absent from the fixed Phase 4 fixture, so the four
+    # canonical candidates and every acceptance count stay byte-for-byte identical.
+    capability_config = select_endpoint("capability_config")
     member = identity_binding_digests.get("member")
 
     values: dict[Branch, list[BranchCandidateV3]] = {branch: [] for branch in BRANCH_ORDER}
@@ -177,6 +181,7 @@ def build_candidate_blueprints(
             "unauthorized_graphql_mutation",
             "privilege_escalation",
             "exposed_debug_endpoint",
+            "line_kv_capability_gap",
         ],
         producer_branch: Branch,
         target_endpoint_id: str,
@@ -311,6 +316,29 @@ def build_candidate_blueprints(
                 ),
             )
         )
+
+    if capability_config is not None:
+        # A candidate whose evidence is a line_kv artifact the parent runtime
+        # cannot interpret unaided; the Verifier resolves it only via an active,
+        # approved CAP-07 Wheel (hermes.capability_verifier).
+        values["infra"].append(
+            authoritative_candidate(
+                candidate_id="infra-capability-gap",
+                candidate_type="line_kv_capability_gap",
+                producer_branch="infra",
+                target_endpoint_id=capability_config.endpoint_id,
+                control_endpoint_ids=(),
+                target_url=capability_config.canonical_url,
+                method="GET",
+                request_body_sha256=None,
+                identity_binding_digest=None,
+                expected_assertion=(
+                    "the line_kv capability artifact is parsed into structured "
+                    "fields only by an active approved Wheel"
+                ),
+            )
+        )
+
     return {branch: tuple(values[branch]) for branch in BRANCH_ORDER}
 
 

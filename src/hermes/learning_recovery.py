@@ -30,7 +30,8 @@ from typing import Literal
 
 from pydantic import Field, field_validator, model_validator
 
-from .learning_contracts import ContinuationOutcomeV1, LearningContract
+from .learning_contracts import LearningContract
+from .r25_contracts import ContinuationOutcomeV1
 
 # Contract id/digest patterns, matching learning_contracts.py.
 _DIGEST = r"^sha256:[0-9a-f]{64}$"
@@ -236,7 +237,7 @@ def record_recovery_feedback(
         wheel_manifest_digest=binding.wheel_manifest_digest,
         resume_binding_digest=binding.digest,
         continuation_outcome_digest=continuation_outcome.digest,
-        effect=_EFFECT_BY_OUTCOME[continuation_outcome.status],
+        effect=_EFFECT_BY_OUTCOME[continuation_outcome.outcome],
         summary=summary,
         recorded_at=now,
     )

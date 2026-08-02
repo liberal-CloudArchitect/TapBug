@@ -12,7 +12,6 @@ from datetime import UTC, datetime
 import pytest
 from pydantic import ValidationError
 
-from hermes.learning_contracts import ContinuationOutcomeV1, ParsedLineObservation
 from hermes.learning_recovery import (
     ActiveWheelView,
     AssessmentPauseRecordV1,
@@ -22,6 +21,7 @@ from hermes.learning_recovery import (
     record_recovery_feedback,
     select_active_wheel,
 )
+from hermes.r25_contracts import ContinuationOutcomeV1
 
 _D = "sha256:" + "0" * 64
 _D2 = "sha256:" + "1" * 64
@@ -59,15 +59,15 @@ def _wheel(
 def _continuation(wheel_digest: str = _D) -> ContinuationOutcomeV1:
     return ContinuationOutcomeV1(
         continuation_run_id="resume-002-child",
-        parent_learning_run_id="learn-001",
+        learning_run_id="learn-001",
         parent_run_id="resume-002",
         scope_digest=_D,
         wheel_manifest_digest=wheel_digest,
+        wheel_activation_digest=_D2,
         execution_receipt_digest=_D2,
-        status="resolved",
-        observations=(ParsedLineObservation(line_number=1, key="kid", value="tenant-a"),),
-        summary="parsed the kid header deterministically",
-        produced_at=_NOW,
+        structured_observation_digest=_D3,
+        outcome="resolved",
+        generated_at=_NOW,
     )
 
 

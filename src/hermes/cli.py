@@ -20,7 +20,10 @@ from collections.abc import Callable, Mapping
 from concurrent.futures import ThreadPoolExecutor
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, Literal, TypeVar, cast
+from typing import TYPE_CHECKING, Any, Literal, TypeVar, cast
+
+if TYPE_CHECKING:
+    from .capability_verifier import CapabilityGapResolver
 
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
@@ -579,6 +582,44 @@ def _start_vertical_run(
         raise
 
 
+def _capability_resolver_from_config(
+    config: dict[str, Any], context: RunContext
+) -> CapabilityGapResolver | None:
+    """Build the CAP-07 Verifier capability from an optional config section.
+
+    Absent for every ordinary run (including the fixed Phase 4 acceptance), so the
+    Verifier leaves a line_kv_capability_gap candidate a coverage gap. When a run
+    has learned an active approved Wheel, the driver supplies the Wheel artifact
+    root, digests, sandbox image, entrypoint, problem card, and the exact gap text.
+    """
+    raw = config.get("capability_resolver")
+    if raw is None:
+        return None
+    from .capability_verifier import CapabilityGapResolver
+    from .learning_recovery import ActiveWheelView
+    from .wheels.sandbox import DockerSandbox
+
+    active = ActiveWheelView(
+        wheel_id=str(raw["wheel_id"]),
+        wheel_manifest_digest=str(raw["wheel_manifest_digest"]),
+        activation_digest=str(raw["wheel_activation_digest"]),
+        status="active",
+        problem_card_ids=(str(raw["problem_card_id"]),),
+    )
+    return CapabilityGapResolver(
+        active_wheel=active,
+        sandbox=DockerSandbox(str(raw["sandbox_image"])),
+        wheel_artifact_root=Path(str(raw["wheel_artifact_root"])),
+        entrypoint=str(raw["entrypoint"]),
+        problem_card_id=str(raw["problem_card_id"]),
+        resume_run_id=context.run_id,
+        paused_run_id=str(raw.get("paused_run_id", context.run_id)),
+        scope_digest=context.scope_digest,
+        wheel_activation_digest=str(raw["wheel_activation_digest"]),
+        gap_text=str(raw["gap_text"]),
+    )
+
+
 def _start_vertical_run_v3(
     config: dict[str, Any],
     *,
@@ -601,7 +642,11 @@ def _start_vertical_run_v3(
         runs_root=Path(config["runs_root"]),
     )
     registry = PromptRegistryV3(Path(config["prompt_root"]))
-    workflow = VerticalWorkflowV3(context, _build_runner_v3(config, context, policy))
+    workflow = VerticalWorkflowV3(
+        context,
+        _build_runner_v3(config, context, policy),
+        capability_resolver=_capability_resolver_from_config(config, context),
+    )
     try:
         return _run_active_v3(
             context,

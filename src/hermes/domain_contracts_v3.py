@@ -232,7 +232,9 @@ class AssetV3(V3Contract):
 class ObservedLinkV3(V3Contract):
     """A bounded relation target projected from Recon's trusted Link header."""
 
-    relation: Literal["negative-control", "graphql", "role-state", "diagnostic"]
+    relation: Literal[
+        "negative-control", "graphql", "role-state", "diagnostic", "capability-config"
+    ]
     canonical_url: str = Field(min_length=1, max_length=2_048)
 
     @field_validator("canonical_url")

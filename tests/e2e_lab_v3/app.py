@@ -102,8 +102,18 @@ class Handler(BaseHTTPRequestHandler):
                     link_values.append('</authz/status>; rel="role-state"')
                 if "infra" in FEATURES:
                     link_values.append('</debug>; rel="diagnostic"')
+                if "capability" in FEATURES:
+                    link_values.append('</config>; rel="capability-config"')
                 links = ", ".join(link_values)
                 self._html(HTTPStatus.OK, "<h1>Phase 4 candidate</h1>", headers={"Link": links})
+            elif path == "/config":
+                # A line_kv capability artifact the assessment cannot interpret
+                # unaided; the Verifier resolves it via an approved CAP-07 Wheel.
+                self._html(
+                    HTTPStatus.OK,
+                    "Service: Hermes\nVersion: 1",
+                    headers={"Content-Type": "text/plain; charset=utf-8"},
+                )
             elif path == "/control":
                 self._html(
                     HTTPStatus.OK,

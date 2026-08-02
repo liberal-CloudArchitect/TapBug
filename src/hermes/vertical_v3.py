@@ -269,12 +269,16 @@ class VerticalWorkflowV3:
             )
         ]
         relation_map: dict[
-            str, Literal["negative_control", "graphql", "role_change", "diagnostic"]
+            str,
+            Literal[
+                "negative_control", "graphql", "role_change", "diagnostic", "capability_config"
+            ],
         ] = {
             "negative-control": "negative_control",
             "graphql": "graphql",
             "role-state": "role_change",
             "diagnostic": "diagnostic",
+            "capability-config": "capability_config",
         }
         for link in asset.observed_links:
             endpoints.append(

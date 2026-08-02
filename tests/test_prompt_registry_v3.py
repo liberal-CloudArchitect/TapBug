@@ -50,7 +50,7 @@ def _copy_v3_assets(destination: Path) -> None:
 def test_v3_registry_binds_exact_nine_role_prompt_set() -> None:
     registry, collection_digest = builder.load_registry(ROOT)
     assert set(registry) == ROLES
-    assert {entry["prompt_version"] for entry in registry.values()} == {"3.0", "3.1"}
+    assert {entry["prompt_version"] for entry in registry.values()} == {"3.0", "3.1", "3.2"}
     assert all(entry["prompt_sha256"].startswith("sha256:") for entry in registry.values())
     assert {registry[role]["output_contract_id"] for role in BRANCHES} == {
         "hermes.branch_operation/v3"

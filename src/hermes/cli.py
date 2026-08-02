@@ -1664,6 +1664,11 @@ def _resume_v3_active(
         workflow = VerticalWorkflowV3(
             context,
             _build_runner_v3(config, context, policy, gateway_handler=gateway),
+            # The Verifier runs here on resume (readonly verification follows the
+            # signed readonly approval), so the CAP-07 Wheel resolver must be rebuilt
+            # on this path too — otherwise a line_kv_capability_gap candidate is left
+            # inconclusive instead of resolved by its active approved Wheel.
+            capability_resolver=_capability_resolver_from_config(config, context),
         )
 
         def compensation_factory() -> CompensationManagerV3:

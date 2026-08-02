@@ -37,6 +37,7 @@ _CAMPAIGN_ORDER = (
     "exposed_debug_endpoint",
     "unauthorized_graphql_mutation",
     "privilege_escalation",
+    "line_kv_capability_gap",
 )
 _DIGEST_PREFIX = "sha256:"
 

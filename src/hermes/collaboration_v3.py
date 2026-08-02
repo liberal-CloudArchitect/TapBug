@@ -79,6 +79,12 @@ class RoutePolicy:
                 features["authz"].add(endpoint.endpoint_id)
             if endpoint.relation in {"debug", "diagnostic"}:
                 features["infra"].add(endpoint.endpoint_id)
+            # Additive CAP-07 relation: a line_kv capability artifact also routes the
+            # infra branch, so its infra-capability-gap candidate is assessed even
+            # when no diagnostic endpoint is present. Absent from every non-capability
+            # inventory, so existing scenario routing is byte-identical.
+            if endpoint.relation == "capability_config":
+                features["infra"].add(endpoint.endpoint_id)
         decisions = tuple(
             RouteBranchDecision(
                 branch=branch,

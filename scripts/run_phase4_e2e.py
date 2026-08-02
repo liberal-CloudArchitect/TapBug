@@ -45,6 +45,12 @@ Scenario = Literal[
     "mutation-rejected",
     "readonly-rejected",
     "all-rejected",
+    # CAP-07: web + a line_kv_capability_gap candidate the Verifier resolves via an
+    # active approved Wheel. Each routed branch carries exactly one candidate (web:
+    # web-xcto, infra: infra-capability-gap) — the proven single-candidate fan-in
+    # fidelity load — and it is only reachable with a supplied Wheel resolver + the
+    # capability fixture feature, so it never perturbs the fixed acceptance scenarios.
+    "capability",
 ]
 
 _SCENARIO_DECISIONS: dict[Scenario, tuple[tuple[str, str], ...]] = {
@@ -53,6 +59,7 @@ _SCENARIO_DECISIONS: dict[Scenario, tuple[tuple[str, str], ...]] = {
     "mutation-rejected": (("readonly", "approve"), ("mutation", "reject")),
     "readonly-rejected": (("readonly", "reject"), ("mutation", "approve")),
     "all-rejected": (("readonly", "reject"), ("mutation", "reject")),
+    "capability": (("readonly", "approve"),),
 }
 
 _SCENARIO_EXPECTATIONS: dict[Scenario, dict[str, int | str | bool]] = {
@@ -105,6 +112,18 @@ _SCENARIO_EXPECTATIONS: dict[Scenario, dict[str, int | str | bool]] = {
         "state": "rejected",
         "coverage": "not_created",
         "report": False,
+    },
+    # Placeholder; the capability scenario derives its review verdict from the run's
+    # actual coverage and asserts the Wheel resolution directly (not fixed counts).
+    "capability": {
+        "tasks": 0,
+        "requests": 0,
+        "evidence": 0,
+        "consumptions": 0,
+        "findings": 0,
+        "state": "completed",
+        "coverage": "completed",
+        "report": True,
     },
 }
 
@@ -596,7 +615,15 @@ class Driver:
         )
         vault.chmod(0o600)
         scenario = cast(Scenario, self.args.scenario)
-        enabled_features = "web,infra" if scenario == "web-infra" else "web,api,authz,infra"
+        if scenario == "web-infra":
+            enabled_features = "web,infra"
+        elif scenario == "capability":
+            # No infra/diagnostic feature: the infra branch is routed solely by the
+            # capability_config relation and carries only infra-capability-gap, so
+            # each branch stays at one candidate for reliable fan-in fidelity.
+            enabled_features = "web,capability"
+        else:
+            enabled_features = "web,api,authz,infra"
         self.lab_container = self.command(
             [
                 "docker",
@@ -643,29 +670,34 @@ class Driver:
             ),
             encoding="utf-8",
         )
+        config_body: dict[str, Any] = {
+            "runs_root": str(self.runs),
+            "role_manifests": str(v2_manifests),
+            "role_manifests_v3": str(v3_manifests),
+            "role_trust_store": str(self.root / "publisher-trust.json"),
+            "approval_trust_store": str(self.root / "approval-trust.json"),
+            "review_trust_store": str(self.root / "review-trust.json"),
+            "identity_vault": str(vault),
+            "prompt_root": str(PROJECT_ROOT),
+            "hermes_cli": str(executable_path(self.args.hermes_cli)),
+            "hermes_python": str(executable_path(self.args.hermes_python)),
+            "restricted_bridge": str(PROJECT_ROOT / "scripts/restricted_hermes_acp.py"),
+            "model": self.args.model,
+            "docker_binary": "docker",
+        }
+        if scenario == "capability":
+            config_body["capability_resolver"] = {
+                "wheel_id": self.args.wheel_id,
+                "wheel_manifest_digest": self.args.wheel_manifest_digest,
+                "wheel_activation_digest": self.args.wheel_activation_digest,
+                "sandbox_image": self.args.sandbox_image,
+                "wheel_artifact_root": str(self.args.wheel_artifact_root),
+                "entrypoint": self.args.wheel_entrypoint,
+                "problem_card_id": self.args.problem_card_id,
+                "gap_text": self.args.gap_text,
+            }
         config = self.root / "config.json"
-        config.write_text(
-            json.dumps(
-                {
-                    "runs_root": str(self.runs),
-                    "role_manifests": str(v2_manifests),
-                    "role_manifests_v3": str(v3_manifests),
-                    "role_trust_store": str(self.root / "publisher-trust.json"),
-                    "approval_trust_store": str(self.root / "approval-trust.json"),
-                    "review_trust_store": str(self.root / "review-trust.json"),
-                    "identity_vault": str(vault),
-                    "prompt_root": str(PROJECT_ROOT),
-                    "hermes_cli": str(executable_path(self.args.hermes_cli)),
-                    "hermes_python": str(executable_path(self.args.hermes_python)),
-                    "restricted_bridge": str(PROJECT_ROOT / "scripts/restricted_hermes_acp.py"),
-                    "model": self.args.model,
-                    "docker_binary": "docker",
-                },
-                indent=2,
-            )
-            + "\n",
-            encoding="utf-8",
-        )
+        config.write_text(json.dumps(config_body, indent=2) + "\n", encoding="utf-8")
         return config, port, scope, approver_key, reviewer_key, initial_state_hash
 
     def wait_for_fixture(self, port: int) -> None:
@@ -785,9 +817,20 @@ class Driver:
         else:
             if state.get("execution_state") != "awaiting_review":
                 raise E2EFailure("V3 verification did not pause for signed review")
-            review_verdict = (
-                "accepted" if expected["coverage"] == "completed" else "accepted_with_gaps"
-            )
+            if scenario == "capability":
+                # Derive the verdict from actual coverage: base web/infra candidates
+                # may gap under a lightweight model; the capability candidate itself
+                # is asserted resolved below regardless.
+                coverage_doc = _json(self.runs / run_id / "report" / "coverage-v3.json")
+                review_verdict = (
+                    "accepted_with_gaps"
+                    if coverage_doc.get("completion") == "completed_with_gaps"
+                    else "accepted"
+                )
+            else:
+                review_verdict = (
+                    "accepted" if expected["coverage"] == "completed" else "accepted_with_gaps"
+                )
             self.cli(
                 [
                     "review",
@@ -810,17 +853,26 @@ class Driver:
             completed = self.cli(
                 ["resume", "--config", str(config), "--run-id", run_id], expected={0}
             )
-            if completed.get("execution_state") != expected["state"]:
+            terminal = completed.get("execution_state")
+            allowed_terminal = (
+                {"completed", "completed_with_gaps"}
+                if scenario == "capability"
+                else {expected["state"]}
+            )
+            if terminal not in allowed_terminal:
                 raise E2EFailure(
                     "final reporter resume did not reach the expected V3 terminal state"
                 )
         stats = self.fixture_json(port, "/fixture/stats")
-        verified = verify_scenario_run(
-            self.runs / run_id,
-            scenario=scenario,
-            fixture_stats=stats,
-            initial_state_hash=initial_hash,
-        )
+        if scenario == "capability":
+            verified = self._verify_capability_run(run_id)
+        else:
+            verified = verify_scenario_run(
+                self.runs / run_id,
+                scenario=scenario,
+                fixture_stats=stats,
+                initial_state_hash=initial_hash,
+            )
         self.assert_no_role_containers(run_id)
         summary = {
             "e2e_id": self.e2e_id,
@@ -833,6 +885,30 @@ class Driver:
             summary["accepted_run_id"] = run_id
             summary["accepted_verification"] = verified
         return summary
+
+    def _verify_capability_run(self, run_id: str) -> dict[str, Any]:
+        """Assert the line_kv_capability_gap candidate was resolved by the Wheel.
+
+        The definitive proof is the Verifier's bound observation, written only when
+        an active approved Wheel returned a match in the governed sandbox.
+        """
+        run_dir = self.runs / run_id
+        obs_path = run_dir / "capability_v3" / "infra-capability-gap-observation.json"
+        if not obs_path.exists():
+            raise E2EFailure("capability candidate produced no Wheel observation")
+        observation = _json(obs_path)
+        if not observation.get("matched") or observation.get("status") != "resolved":
+            raise E2EFailure(f"capability candidate was not resolved by the Wheel: {observation}")
+        findings_doc = _json(run_dir / "report" / "findings-v3.json")
+        findings = findings_doc.get("findings", [])
+        return {
+            "capability_candidate_resolved": True,
+            "capability_matched": observation.get("matched"),
+            "capability_status": observation.get("status"),
+            "capability_fields": observation.get("fields"),
+            "capability_wheel_manifest_digest": observation.get("wheel_manifest_digest"),
+            "total_findings": len(findings) if isinstance(findings, list) else 0,
+        }
 
     def assert_no_role_containers(self, run_id: str) -> None:
         remaining = self.command(
@@ -894,6 +970,17 @@ def parser() -> argparse.ArgumentParser:
     result.add_argument(
         "--artifact-root", type=Path, default=PROJECT_ROOT / "artifacts" / "phase4-e2e"
     )
+    # Only for --scenario capability: the active approved CAP-07 Wheel the Verifier
+    # invokes to resolve the line_kv_capability_gap candidate (supplied by
+    # run_phase4_capability_e2e.py after a real R2.5 learning run).
+    result.add_argument("--wheel-id", default="passive-parser")
+    result.add_argument("--wheel-manifest-digest", default="")
+    result.add_argument("--wheel-activation-digest", default="")
+    result.add_argument("--sandbox-image", default="")
+    result.add_argument("--wheel-artifact-root", type=Path, default=Path("."))
+    result.add_argument("--wheel-entrypoint", default="wheel:parse_response")
+    result.add_argument("--problem-card-id", default="gap-line-kv-unparsed-field")
+    result.add_argument("--gap-text", default="Service: Hermes\nVersion: 1")
     return result
 
 

@@ -14,7 +14,7 @@ candidates are byte-for-byte unchanged.
 from __future__ import annotations
 
 from hermes.campaign_v3 import _candidate_actions
-from hermes.collaboration_v3 import build_candidate_blueprints
+from hermes.collaboration_v3 import RoutePolicy, build_candidate_blueprints
 from hermes.domain_contracts_v3 import EndpointInventoryV3, EndpointV3
 from hermes.evidence import EvidenceArtifactRef
 
@@ -30,12 +30,13 @@ def _evidence() -> EvidenceArtifactRef:
     )
 
 
-def _inventory(*, with_capability: bool) -> EndpointInventoryV3:
+def _inventory(*, with_capability: bool, with_debug: bool = True) -> EndpointInventoryV3:
     values = [
         ("web", "/candidate", "GET", "candidate", ("text/html",)),
         ("control", "/control", "GET", "negative_control", ("text/html",)),
-        ("debug", "/debug", "GET", "debug", ("application/json",)),
     ]
+    if with_debug:
+        values.append(("debug", "/debug", "GET", "debug", ("application/json",)))
     if with_capability:
         values.append(("config", "/config", "GET", "capability_config", ("text/plain",)))
     endpoints = tuple(
@@ -79,6 +80,25 @@ def test_without_capability_artifact_no_gap_candidate_is_emitted() -> None:
     )
     all_types = {c.candidate_type for cs in blueprints.values() for c in cs}
     assert "line_kv_capability_gap" not in all_types
+
+
+def test_capability_config_routes_infra_with_a_single_candidate() -> None:
+    # The ACP-driven Phase 4 capability scenario advertises web + capability only
+    # (no diagnostic): the infra branch is routed solely by the capability_config
+    # relation and each routed branch carries exactly one candidate — the reliable
+    # single-candidate fan-in fidelity load the E2E depends on.
+    inventory = _inventory(with_capability=True, with_debug=False)
+    route = RoutePolicy().decide(
+        inventory,
+        run_id="phase4-run",
+        scope_digest=DIGEST,
+        generated_by_task_id="phase4-router",
+    )
+    routed = {decision.branch for decision in route.branches if decision.routed}
+    assert routed == {"web", "infra"}
+    blueprints = build_candidate_blueprints(inventory, identity_binding_digests={})
+    assert [c.candidate_id for c in blueprints["web"]] == ["web-xcto"]
+    assert [c.candidate_id for c in blueprints["infra"]] == ["infra-capability-gap"]
 
 
 def test_campaign_plans_a_readonly_action_for_the_gap_candidate() -> None:

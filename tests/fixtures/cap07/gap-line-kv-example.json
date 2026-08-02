@@ -1,0 +1,6 @@
+{
+  "_comment": "Illustrative CAP-07 gap: an assessment observed a line_kv-formatted value it could not parse without a governed Wheel. The R2.5 line_kv_parser/v1 Wheel resolves it in the sandbox into structured fields. The real E2E (run_cap07_gap_resolution_e2e.py) uses the freshly-learned Wheel's own positive fixture as the gap input so a match is guaranteed to exercise that exact capability.",
+  "problem_card_id": "gap-line-kv-unparsed-field",
+  "gap_input": {"text": "Service: Hermes\nVersion: 1"},
+  "expected": {"matched": true, "fields": {"service": "hermes", "version": "1"}}
+}

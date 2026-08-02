@@ -28,7 +28,13 @@ jobs:
       - run: python -m ruff check src containers scripts tests
       - run: python -m mypy src/hermes
       - run: python -m pytest -m 'not integration'
+      # Docker-boundary integration tests need a reviewed HERMES_SANDBOX_IMAGE
+      # (an @sha256-pinned image with pytest preloaded). GitHub-hosted runners
+      # don't have one, so this runs only when the repo variable is set (e.g. on
+      # the self-hosted acceptance runner); the localhost-acceptance workflow
+      # always runs it. The GitHub-hosted required gate is static + unit tests.
       - run: python -m pytest -m integration
+        if: ${{ vars.HERMES_SANDBOX_IMAGE != '' }}
       - run: python -m pytest -m provider_e2e
         if: ${{ vars.HERMES_REQUIRE_PHASE2_E2E == '1' }}
         env:

@@ -52,6 +52,13 @@ _PRESENTATION: dict[CandidateTypeV3, tuple[str, str, SeverityV3]] = {
         "The local fixture exposed diagnostic output while the matched control endpoint did not.",
         "medium",
     ),
+    "line_kv_capability_gap": (
+        "Capability-resolved line_kv exposure",
+        "A line_kv structure the assessment could not interpret unaided was parsed "
+        "by a governed, approved CAP-07 Wheel into structured fields, resolving a "
+        "coverage gap; only promoted when the Wheel returned a bound match.",
+        "informational",
+    ),
 }
 
 

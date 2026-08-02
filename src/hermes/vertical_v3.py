@@ -24,6 +24,7 @@ from .campaign_v3 import (
     build_coverage_report,
     build_verification_campaign,
 )
+from .capability_verifier import CapabilityGapResolver, capability_gap_verdict
 from .collaboration_v3 import CandidateFanIn, ParallelCollaborationV3, RoutePolicy
 from .domain_contracts_v3 import (
     ApprovalBatchV3,
@@ -143,6 +144,7 @@ class VerticalWorkflowV3:
         max_workers: int = 4,
         timeout_seconds: int = 180,
         max_active_seconds: int = 1_800,
+        capability_resolver: CapabilityGapResolver | None = None,
     ) -> None:
         self.context = context
         self.runner = runner
@@ -150,6 +152,12 @@ class VerticalWorkflowV3:
         self.timeout_seconds = timeout_seconds
         self.active_time = ActiveTimeLedger(context, max_active_seconds=max_active_seconds)
         self.events = WorkflowEventLog(context)
+        # Optional CAP-07 capability: when the paused assessment learned an active
+        # approved Wheel for a line_kv_capability_gap candidate, the Verifier
+        # resolves that candidate through the governed sandbox instead of leaving
+        # it a coverage gap. Off by default; the fixed Phase 4 fixture never emits
+        # that candidate type, so existing acceptance behaviour is unchanged.
+        self._capability_resolver = capability_resolver
 
     def _task_timeout(self) -> int:
         remaining = self.active_time.remaining_seconds()
@@ -798,6 +806,29 @@ class VerticalWorkflowV3:
             )
             for action, execution in zip(actions, executions, strict=True)
         }
+        if candidate_type == "line_kv_capability_gap":
+            # Wheel-consumption hook wired into the Verifier's execution graph:
+            # this candidate's verdict genuinely depends on an active approved
+            # Wheel invoked through the governed sandbox (fail-closed inside
+            # capability_gap_verdict / resolve_gap_with_wheel).
+            cap_status, cap_summary, observation = capability_gap_verdict(
+                self._capability_resolver, now=datetime.now(UTC)
+            )
+            if observation is not None:
+                self.context.write_json(
+                    f"capability_v3/{outcome.candidate_id}-observation.json",
+                    observation.model_dump(mode="json"),
+                    immutable=True,
+                )
+            self.events.record(
+                "capability_gap_resolved",
+                candidate_id=outcome.candidate_id,
+                status=cap_status,
+                wheel_backed=self._capability_resolver is not None,
+            )
+            return outcome.model_copy(
+                update={"status": cap_status, "assertion_summary": cap_summary}
+            )
         status, summary = self._fixed_fixture_verdict(candidate_type, by_purpose)
         return outcome.model_copy(update={"status": status, "assertion_summary": summary})
 

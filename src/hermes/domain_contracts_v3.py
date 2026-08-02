@@ -30,6 +30,11 @@ CandidateTypeV3 = Literal[
     "unauthorized_graphql_mutation",
     "privilege_escalation",
     "exposed_debug_endpoint",
+    # A candidate whose evidence is a line_kv structure the parent cannot
+    # interpret without a learned capability; the Verifier resolves it only via
+    # an active, approved CAP-07 Wheel (see hermes.capability_verifier), and it is
+    # a coverage gap otherwise. Never emitted by the fixed Phase 4 fixture.
+    "line_kv_capability_gap",
 ]
 RiskGroup = Literal["readonly", "mutation", "cleanup"]
 

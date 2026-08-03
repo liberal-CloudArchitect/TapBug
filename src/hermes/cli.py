@@ -2278,7 +2278,49 @@ def _parser() -> argparse.ArgumentParser:
         item.add_argument("--run-id", required=True)
         item.add_argument("--key", type=Path, required=True)
         item.add_argument("--reason", required=True)
+    # CAP-07 (docs/08 §6.3): compose a governed assessment recovery from a paused
+    # assessment record + an R2.5 continuation outcome + the active Wheels. This is
+    # a cross-artifact composition, so it takes standalone JSON files rather than a
+    # run context. Fail-closed via hermes.cap07.verify_recovery_bundle.
+    learn_recover = learn_sub.add_parser("recover")
+    learn_recover.add_argument("--pause", type=Path, required=True)
+    learn_recover.add_argument("--continuation", type=Path, required=True)
+    learn_recover.add_argument("--wheels", type=Path, required=True)
+    learn_recover.add_argument("--resume-run-id", required=True)
+    learn_recover.add_argument("--summary", required=True)
+    learn_recover.add_argument("--out", type=Path, default=None)
     return parser
+
+
+def _learn_recover(args: argparse.Namespace) -> int:
+    """CAP-07: compose + verify a governed recovery from standalone artifact files."""
+
+    from .cap07 import Cap07Error, orchestrate_recovery
+    from .learning_recovery import ActiveWheelView, AssessmentPauseRecordV1, RecoveryBlocked
+    from .r25_contracts import ContinuationOutcomeV1
+
+    pause = AssessmentPauseRecordV1.model_validate_json(args.pause.read_text(encoding="utf-8"))
+    continuation = ContinuationOutcomeV1.model_validate_json(
+        args.continuation.read_text(encoding="utf-8")
+    )
+    wheels_raw = json.loads(args.wheels.read_text(encoding="utf-8"))
+    if not isinstance(wheels_raw, list):
+        raise CliError("--wheels must be a JSON array of ActiveWheelView objects")
+    wheels = tuple(ActiveWheelView.model_validate(item) for item in wheels_raw)
+    try:
+        bundle = orchestrate_recovery(
+            pause,
+            continuation,
+            wheels,
+            resume_run_id=args.resume_run_id,
+            summary=args.summary,
+            now=datetime.now(UTC),
+        )
+    except (Cap07Error, RecoveryBlocked) as exc:
+        raise CliError(f"CAP-07 recovery refused: {exc}") from exc
+    if args.out is not None:
+        args.out.write_text(bundle.model_dump_json(indent=2) + "\n", encoding="utf-8")
+    return _emit_model(bundle, as_json=args.json)
 
 
 def _execute(args: argparse.Namespace) -> int:
@@ -2546,6 +2588,9 @@ def _execute(args: argparse.Namespace) -> int:
         print(json.dumps({"usage": args.usage, "public_key": encode_base64(public_key_bytes(key))}))
         return 0
     if args.command == "learn":
+        # 'recover' composes standalone artifact files and needs no config context.
+        if args.learn_command == "recover":
+            return _learn_recover(args)
         config = _config(args.config)
         if args.learn_command == "doctor":
             result = validate_learning_config(config)

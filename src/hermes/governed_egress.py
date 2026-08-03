@@ -75,6 +75,27 @@ class Transport(Protocol):
     def perform(self, request: EgressRequestV1) -> EgressResponseV1: ...
 
 
+class ReplayTransport:
+    """A fail-closed transport that replays operator-recorded responses.
+
+    The operator issues the authorized requests once (through their own client,
+    under the program's rate limit) and records each response; this transport then
+    lets the governed decision path (scope/pace/budget/audit + the N4 verdict) run
+    deterministically over those recordings, with no further network. An
+    unrecorded request raises rather than silently returning a default — a missing
+    recording must never be mistaken for a real observation.
+    """
+
+    def __init__(self, responses: dict[tuple[str, str], EgressResponseV1]) -> None:
+        self._responses = dict(responses)
+
+    def perform(self, request: EgressRequestV1) -> EgressResponseV1:
+        key = (request.method, request.url)
+        if key not in self._responses:
+            raise GovernedEgressError(f"no recorded response for {request.method} {request.url}")
+        return self._responses[key]
+
+
 class EgressAuditRecordV1(BaseModel):
     """One append-only audit line — proves every request was in-scope and paced."""
 

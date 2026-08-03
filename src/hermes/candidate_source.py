@@ -46,7 +46,7 @@ _ID = r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
 _SLUG = r"^[a-z0-9][a-z0-9._-]{0,119}$"
 _DIGEST = r"^sha256:[0-9a-f]{64}$"
 
-CandidateSource = Literal["nuclei", "expert_hypothesis"]
+CandidateSource = Literal["nuclei", "expert_hypothesis", "hermes_active"]
 # Deliberately NO "validated": that verdict is earned in N4 verification + review,
 # never asserted by a candidate source.
 CandidateStatusV1 = Literal["candidate", "inconclusive", "blocked"]

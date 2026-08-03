@@ -72,6 +72,10 @@ class KeyUsage(StrEnum):
     HUMAN_REVIEW = "human_review"
     ROLE_MANIFEST = "role_manifest"
     WHEEL_APPROVAL = "wheel_approval"
+    # N1 (docs/19): a human authorizing a real-asset ScopeProfile — kept distinct
+    # from operational APPROVAL so scope authorization is a separate duty from
+    # per-action approval.
+    SCOPE_APPROVAL = "scope_approval"
 
 
 class KeyStatus(StrEnum):

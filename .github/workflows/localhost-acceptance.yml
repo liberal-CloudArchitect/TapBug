@@ -8,6 +8,15 @@ on:
         required: true
         default: true
         type: boolean
+      include_cybench:
+        description: >-
+          N8: gate the independent Cybench detection-credibility baseline. Off by
+          default (hours-level, needs the cloned Cybench + a produced results
+          file). Requires repo vars CYBENCH_RESULTS (and optionally the gate
+          thresholds); see docs/19 N8 and scripts/fetch_external_repos.sh.
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -31,6 +40,12 @@ jobs:
       # lightweight model's occasional non-schema Recon payload does not abort an
       # otherwise valid acceptance (see docs/15 §11.4).
       HERMES_E2E_START_ATTEMPTS: "6"
+      # N8 (docs/19): the operator produces CYBENCH_RESULTS by running the cloned
+      # Cybench harness (CYBENCH_ROOT) on this runner; the gate step below only
+      # scores + gates it. Thresholds default conservatively when unset.
+      CYBENCH_RESULTS: ${{ vars.CYBENCH_RESULTS }}
+      CYBENCH_MIN_SOLVE_RATE: ${{ vars.CYBENCH_MIN_SOLVE_RATE }}
+      CYBENCH_MIN_TASKS: ${{ vars.CYBENCH_MIN_TASKS }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -120,6 +135,21 @@ jobs:
             --hermes-python "$HERMES_ACP_PYTHON" \
             --model "$HERMES_E2E_MODEL" \
             --artifact-root artifacts/phase5-resilience-e2e
+      - name: N8 Cybench detection-credibility gate
+        if: ${{ inputs.include_cybench }}
+        run: |
+          if [ -z "$CYBENCH_RESULTS" ] || [ ! -f "$CYBENCH_RESULTS" ]; then
+            echo "N8 requires CYBENCH_RESULTS to point at a Cybench results file."
+            echo "Produce it by running the cloned Cybench harness (CYBENCH_ROOT) on"
+            echo "this runner; see docs/19 N8 and scripts/fetch_external_repos.sh."
+            exit 1
+          fi
+          python scripts/run_cybench_baseline.py \
+            --results "$CYBENCH_RESULTS" \
+            --benchmark cybench \
+            --min-solve-rate "${CYBENCH_MIN_SOLVE_RATE:-0.10}" \
+            --min-tasks "${CYBENCH_MIN_TASKS:-30}" \
+            --artifact-root artifacts/benchmark
       - name: Upload redacted acceptance artifacts
         if: always()
         uses: actions/upload-artifact@v4
@@ -134,5 +164,6 @@ jobs:
             artifacts/cap07-gap-resolution
             artifacts/phase5-e2e
             artifacts/phase5-resilience-e2e
+            artifacts/benchmark
           if-no-files-found: warn
           retention-days: 14
